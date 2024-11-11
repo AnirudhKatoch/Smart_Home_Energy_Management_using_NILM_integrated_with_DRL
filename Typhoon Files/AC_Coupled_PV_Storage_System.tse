@@ -1,0 +1,5739 @@
+version = 4.2
+
+//
+// Saved by sw version: 2024.2
+//
+
+model "AC_Coupled_PV_Storage_System" {
+    configuration {
+        hil_device = "HIL402"
+        hil_configuration_id = 2
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        dae_solver = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = error
+    }
+
+    component Subsystem Root {
+        component "core/PV Power Plant (Generic)" "PV Power Plant (Generic)1" {
+            ILR_factor = "1"
+            Pnom = "10e3"
+            Snom = "np.sqrt(2.0)*10e3"
+            Tfast = "Ts1"
+            Tslow = "Ts2"
+            Vnom_sec_LL = "400"
+            include_transformer = "False"
+        }
+        [
+            position = 7632, 8356
+            size = 144, 136
+        ]
+
+        component Subsystem "PV Power Plant (Generic) UI1" {
+            layout = dynamic
+            component "core/SCADA Input" Pcurtailment {
+                def_value = "1"
+                execution_rate = "inherit"
+                max = "1e8"
+                min = "-1e8"
+                signal_access = "Inherit"
+                unit = "pu"
+            }
+            [
+                position = 8528, 7768
+            ]
+
+            component "core/Probe" PFmeas {
+            }
+            [
+                position = 7688, 8096
+            ]
+
+            component "core/Probe" Qmeas_kVAr {
+                streaming_en = "True"
+            }
+            [
+                position = 7848, 8016
+            ]
+
+            component "core/Probe" Pnom_kW {
+            }
+            [
+                position = 8136, 7872
+            ]
+
+            component "core/Probe" Qnom_kVAr {
+            }
+            [
+                position = 8104, 7888
+            ]
+
+            component "core/Probe" Enable_fb {
+            }
+            [
+                position = 8232, 7824
+            ]
+
+            component "core/Probe" Qref_fb_kVAr {
+            }
+            [
+                position = 8168, 7856
+            ]
+
+            component "core/Probe" Smeas_kVA {
+            }
+            [
+                position = 7720, 8080
+            ]
+
+            component "core/Probe" Snom_kVA {
+            }
+            [
+                position = 8072, 7904
+            ]
+
+            component "core/SCADA Input" Qref {
+                execution_rate = "inherit"
+                max = "1e8"
+                min = "-1e8"
+                unit = "pu"
+            }
+            [
+                position = 8528, 7824
+            ]
+
+            component "core/Probe" Vgrid_rms_meas_kV {
+            }
+            [
+                position = 8040, 7920
+            ]
+
+            component "core/SCADA Input" Enable {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 8528, 7656
+            ]
+
+            component "core/Probe" Pref_fb_kW {
+            }
+            [
+                position = 8200, 7840
+            ]
+
+            component "core/SCADA Input" "Reset alarms" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8528, 7712
+            ]
+
+            component "core/Probe" state {
+            }
+            [
+                position = 7528, 8176
+            ]
+
+            component "core/Probe" Fmeas_Hz {
+                streaming_en = "True"
+            }
+            [
+                position = 8008, 7936
+            ]
+
+            component "core/Probe" Pmeas_kW {
+                streaming_en = "True"
+            }
+            [
+                position = 8096, 8088
+            ]
+
+            component "core/Probe" Pa_meas_kW {
+            }
+            [
+                position = 7936, 7960
+            ]
+
+            component "core/Probe" Pb_meas_kW {
+            }
+            [
+                position = 7912, 7984
+            ]
+
+            component "core/Probe" Pc_meas_kW {
+            }
+            [
+                position = 7880, 8000
+            ]
+
+            component "core/Probe" Qb_meas_kVAr {
+            }
+            [
+                position = 7784, 8048
+            ]
+
+            component "core/Probe" Qc_meas_kVAr {
+            }
+            [
+                position = 7752, 8064
+            ]
+
+            component "core/Probe" Qa_meas_kVAr {
+            }
+            [
+                position = 7816, 8032
+            ]
+
+            component "core/Probe" alarm_msg {
+            }
+            [
+                position = 7496, 8192
+            ]
+
+            component "core/Probe" Available_Ppv_kW {
+            }
+            [
+                position = 7624, 8128
+            ]
+
+            component "core/Probe" curtailment_status {
+            }
+            [
+                position = 7592, 8144
+            ]
+
+            component "core/Probe" Vconv_rms_meas_V {
+            }
+            [
+                position = 7656, 8112
+            ]
+
+            component "core/SCADA Input" "Pcurtailment rate of change" {
+                def_value = "1e6"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu/s"
+            }
+            [
+                position = 8528, 7880
+            ]
+
+            component "core/SCADA Input" "Qref rate of change" {
+                def_value = "0.5"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu/s"
+            }
+            [
+                position = 8528, 7936
+            ]
+
+            component "core/Probe" MCB_status {
+            }
+            [
+                position = 7568, 8160
+            ]
+
+            component "core/SCADA Input" Temperature {
+                def_value = "25"
+                execution_rate = "inherit"
+                unit = "°C"
+            }
+            [
+                position = 7984, 8584
+            ]
+
+            component "core/SCADA Input" Irradiance {
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "W/m2"
+            }
+            [
+                position = 7984, 8640
+            ]
+
+            component "core/SCADA Input" "MPPT rate of change" {
+                def_value = "1e6"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu/s"
+            }
+            [
+                position = 8532, 7996
+            ]
+
+            component "core/DER (Generic) Output Split" "DER (Generic) Output Split1" {
+                Available_Ppv_kW = "True"
+                Enable_fb = "True"
+                Fmeas_Hz = "True"
+                Lvrt_active_status = "True"
+                MCB_status = "True"
+                PFmeas = "True"
+                Pa_meas_kW = "True"
+                Pb_meas_kW = "True"
+                Pc_meas_kW = "True"
+                Pmeas_kW = "True"
+                Pnom_kW = "True"
+                Pref_fb_kW = "True"
+                Qa_meas_kVAr = "True"
+                Qb_meas_kVAr = "True"
+                Qc_meas_kVAr = "True"
+                Qmeas_kVAr = "True"
+                Qnom_kVAr = "True"
+                Qref_fb_kVAr = "True"
+                Smeas_kVA = "True"
+                Snom_kVA = "True"
+                Vconv_rms_meas_V = "True"
+                Vgrid_rms_meas_kV = "True"
+                alarm_msg = "True"
+                component_select = "PV Power Plant"
+                curtailment_status = "True"
+                state = "True"
+            }
+            [
+                position = 7280, 8016
+                size = 128, 416
+            ]
+
+            component "core/DER (Generic) Control Join" "DER (Generic) Control Join1" {
+                Enable = "True"
+                F_alarm_lower_limit = "True"
+                F_alarm_upper_limit = "True"
+                HzWatt_enable = "True"
+                I_alarm_upper_limit = "True"
+                LVRT_P_set = "True"
+                LVRT_Q_contribution = "True"
+                LVRT_enable = "True"
+                MPPT_rate_of_change = "True"
+                Pcurtailment = "True"
+                Pcurtailment_rate_of_change = "True"
+                Qref = "True"
+                Qref_rate_of_change = "True"
+                Reset_alarms = "True"
+                S_alarm_upper_limit = "True"
+                V_alarm_lower_limit = "True"
+                V_alarm_upper_limit = "True"
+                VoltVAr_enable = "True"
+                VoltWatt_enable = "True"
+                component_select = "PV Power Plant"
+            }
+            [
+                position = 8792, 8120
+                size = 192, 320
+            ]
+
+            component "core/SCADA Input" "LVRT enable" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8528, 8048
+            ]
+
+            component "core/SCADA Input" "LVRT Q contribution" {
+                def_value = "2"
+                execution_rate = "inherit"
+                max = "100"
+                min = "0"
+                unit = "%"
+            }
+            [
+                position = 8528, 8112
+            ]
+
+            component "core/SCADA Input" "LVRT P set" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8168
+            ]
+
+            component "core/Probe" LVRT_active_status {
+            }
+            [
+                position = 7464, 8208
+            ]
+
+            component "core/DER (Generic) External Join" "DER (Generic) External Join1" {
+                Irradiance = "True"
+                Temperature = "True"
+                component_select = "PV Power Plant"
+            }
+            [
+                position = 8208, 8608
+                size = 192, 64
+            ]
+
+            component "core/SCADA Input" "V alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8224
+            ]
+
+            component "core/SCADA Input" "V alarm lower limit" {
+                def_value = "0.5"
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8280
+            ]
+
+            component "core/SCADA Input" "F alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8336
+            ]
+
+            component "core/SCADA Input" "F alarm lower limit" {
+                def_value = "0.5"
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8392
+            ]
+
+            component "core/SCADA Input" "S alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8448
+            ]
+
+            component "core/SCADA Input" "I alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8528, 8504
+            ]
+
+            component "core/SCADA Input" "VoltVAr enable" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8528, 8560
+            ]
+
+            component "core/SCADA Input" "HzWatt enable" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8528, 8616
+            ]
+
+            component "core/SCADA Input" "VoltWatt enable" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8528, 8672
+            ]
+
+            port ui_in {
+                label = "ui_in"
+                position = right:1
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7104, 8016
+            ]
+
+            port ui_out {
+                label = "ui_out"
+                position = right:2
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8944, 8120
+            ]
+
+            port ext {
+                label = "ext"
+                position = right:3
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8384, 8608
+            ]
+
+            port "PV AC Power" {
+                label = "PV AC Power"
+                position = left:4
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8152, 8172
+            ]
+
+            junction Junction1 sp
+            [
+                position = 7904, 8068
+            ]
+
+            connect ui_in "DER (Generic) Output Split1.ui_in" as Connection2919
+            connect "DER (Generic) Output Split1.Enable_fb" Enable_fb.in as Connection2920
+            connect Pref_fb_kW.in "DER (Generic) Output Split1.Pref_fb_kW" as Connection2921
+            connect "DER (Generic) Output Split1.Qref_fb_kVAr" Qref_fb_kVAr.in as Connection2922
+            connect Pnom_kW.in "DER (Generic) Output Split1.Pnom_kW" as Connection2923
+            connect "DER (Generic) Output Split1.Qnom_kVAr" Qnom_kVAr.in as Connection2924
+            connect "DER (Generic) Output Split1.Snom_kVA" Snom_kVA.in as Connection2925
+            connect Vgrid_rms_meas_kV.in "DER (Generic) Output Split1.Vgrid_rms_meas_kV" as Connection2926
+            connect "DER (Generic) Output Split1.Fmeas_Hz" Fmeas_Hz.in as Connection2927
+            connect Pa_meas_kW.in "DER (Generic) Output Split1.Pa_meas_kW" as Connection2929
+            connect "DER (Generic) Output Split1.Pb_meas_kW" Pb_meas_kW.in as Connection2930
+            connect Pc_meas_kW.in "DER (Generic) Output Split1.Pc_meas_kW" as Connection2931
+            connect "DER (Generic) Output Split1.Qmeas_kVAr" Qmeas_kVAr.in as Connection2932
+            connect Qa_meas_kVAr.in "DER (Generic) Output Split1.Qa_meas_kVAr" as Connection2933
+            connect "DER (Generic) Output Split1.Qb_meas_kVAr" Qb_meas_kVAr.in as Connection2934
+            connect Qc_meas_kVAr.in "DER (Generic) Output Split1.Qc_meas_kVAr" as Connection2935
+            connect "DER (Generic) Output Split1.Smeas_kVA" Smeas_kVA.in as Connection2936
+            connect "DER (Generic) Output Split1.PFmeas" PFmeas.in as Connection2937
+            connect Vconv_rms_meas_V.in "DER (Generic) Output Split1.Vconv_rms_meas_V" as Connection2938
+            connect "DER (Generic) Output Split1.Available_Ppv_kW" Available_Ppv_kW.in as Connection2939
+            connect curtailment_status.in "DER (Generic) Output Split1.curtailment_status" as Connection2940
+            connect "DER (Generic) Output Split1.MCB_status" MCB_status.in as Connection2941
+            connect state.in "DER (Generic) Output Split1.state" as Connection2942
+            connect "DER (Generic) Output Split1.alarm_msg" alarm_msg.in as Connection2943
+            connect ui_out "DER (Generic) Control Join1.ui_out" as Connection2944
+            connect Qref.out "DER (Generic) Control Join1.Qref" as Connection2945
+            connect Enable.out "DER (Generic) Control Join1.Enable" as Connection2946
+            connect "Reset alarms.out" "DER (Generic) Control Join1.Reset alarms" as Connection2947
+            connect Pcurtailment.out "DER (Generic) Control Join1.Pcurtailment" as Connection2948
+            connect "Pcurtailment rate of change.out" "DER (Generic) Control Join1.Pcurtailment rate of change" as Connection2949
+            connect "Qref rate of change.out" "DER (Generic) Control Join1.Qref rate of change" as Connection2950
+            connect "DER (Generic) Control Join1.MPPT rate of change" "MPPT rate of change.out" as Connection2951
+            connect "LVRT enable.out" "DER (Generic) Control Join1.LVRT enable" as Connection2952
+            connect "LVRT Q contribution.out" "DER (Generic) Control Join1.LVRT Q contribution" as Connection2953
+            connect "LVRT P set.out" "DER (Generic) Control Join1.LVRT P set" as Connection2954
+            connect LVRT_active_status.in "DER (Generic) Output Split1.Lvrt_active_status" as Connection2955
+            connect "DER (Generic) External Join1.ext" ext as Connection2956
+            connect "V alarm upper limit.out" "DER (Generic) Control Join1.V alarm upper limit" as Connection2959
+            connect "V alarm lower limit.out" "DER (Generic) Control Join1.V alarm lower limit" as Connection2960
+            connect "F alarm upper limit.out" "DER (Generic) Control Join1.F alarm upper limit" as Connection2961
+            connect "F alarm lower limit.out" "DER (Generic) Control Join1.F alarm lower limit" as Connection2962
+            connect "S alarm upper limit.out" "DER (Generic) Control Join1.S alarm upper limit" as Connection2963
+            connect "I alarm upper limit.out" "DER (Generic) Control Join1.I alarm upper limit" as Connection2964
+            connect "VoltVAr enable.out" "DER (Generic) Control Join1.VoltVAr enable" as Connection2965
+            connect "HzWatt enable.out" "DER (Generic) Control Join1.HzWatt enable" as Connection2966
+            connect "VoltWatt enable.out" "DER (Generic) Control Join1.VoltWatt enable" as Connection2967
+            connect "DER (Generic) Output Split1.Pmeas_kW" Junction1 as Connection2968
+            connect Junction1 Pmeas_kW.in as Connection2969
+            connect "PV AC Power" Junction1 as Connection2970
+            connect Irradiance.out "DER (Generic) External Join1.Irradiance" as Connection2971
+            connect Temperature.out "DER (Generic) External Join1.Temperature" as Connection2972
+
+            mask {
+                icon = "image(\'pv_plant_generic_ui.svg\')"
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User Interface subsystem intended to be used with \"PV Power Plant (Generic)\" component.</p></body></html>"
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec_()
+                
+                ENDCODE
+            }
+        }
+        [
+            position = 7460, 8352
+            hide_name = True
+            size = 112, 128
+        ]
+
+        component "core/Three-phase Meter" "Three-phase Meter Generation" {
+            I_rms = "True"
+            P_meas = "True"
+            Ts = "Ts2"
+            VAB = "True"
+            VBC = "True"
+            VCA = "True"
+            VLL_rms = "True"
+            VLn_rms = "True"
+            freq = "True"
+        }
+        [
+            position = 8448, 8024
+            size = 56, 240
+        ]
+
+        component "core/Meter Split" "Meter Split Generation" {
+            power_p = "True"
+            van = "False"
+            vbn = "False"
+            vcn = "False"
+        }
+        [
+            position = 8304, 7776
+            scale = -1, 1
+            size = 96, 80
+        ]
+
+        component "core/Three-phase Meter" "Three-phase Meter GRID" {
+            I_rms = "True"
+            P_meas = "True"
+            Ts = "Ts2"
+            VAB = "True"
+            VBC = "True"
+            VCA = "True"
+            VLL_rms = "True"
+            VLn_rms = "True"
+            freq = "True"
+        }
+        [
+            position = 9008, 8024
+            scale = -1, 1
+            size = 56, 240
+        ]
+
+        component Subsystem "Meter Split GRID" {
+            layout = dynamic
+            component "core/Termination" VN {
+            }
+            [
+                position = 7248, 7216
+            ]
+
+            component "core/Termination" IN {
+            }
+            [
+                position = 7248, 7328
+            ]
+
+            component "core/Termination" VN_RMS {
+            }
+            [
+                position = 7248, 7272
+            ]
+
+            component "core/Termination" IN_RMS {
+            }
+            [
+                position = 7248, 7384
+            ]
+
+            component "core/Bus Split" input_bus {
+                outputs = "30"
+            }
+            [
+                position = 6840, 7920
+                rotation = left
+            ]
+
+            component "core/Bus Split" extra_input_bus {
+                outputs = "12"
+            }
+            [
+                position = 7984, 7920
+                rotation = left
+            ]
+
+            component "core/Termination" VAn_RMS {
+            }
+            [
+                position = 6896, 6880
+            ]
+
+            component "core/Termination" VBn_RMS {
+            }
+            [
+                position = 6896, 6936
+            ]
+
+            component "core/Termination" VCn_RMS {
+            }
+            [
+                position = 6896, 6992
+            ]
+
+            component "core/Termination" VLn_RMS {
+            }
+            [
+                position = 6896, 7048
+            ]
+
+            component "core/Termination" VAB {
+            }
+            [
+                position = 6544, 7048
+            ]
+
+            component "core/Termination" VBC {
+            }
+            [
+                position = 6544, 7104
+            ]
+
+            component "core/Termination" VCA {
+            }
+            [
+                position = 6544, 7160
+            ]
+
+            component "core/Termination" VAB_RMS {
+            }
+            [
+                position = 6896, 7104
+            ]
+
+            component "core/Termination" VBC_RMS {
+            }
+            [
+                position = 6896, 7160
+            ]
+
+            component "core/Termination" VCA_RMS {
+            }
+            [
+                position = 6896, 7216
+            ]
+
+            component "core/Termination" VLL_RMS {
+            }
+            [
+                position = 6896, 7272
+            ]
+
+            component "core/Termination" IA {
+            }
+            [
+                position = 6544, 7216
+            ]
+
+            component "core/Termination" IB {
+            }
+            [
+                position = 6544, 7272
+            ]
+
+            component "core/Termination" IC {
+            }
+            [
+                position = 6544, 7328
+            ]
+
+            component "core/Termination" IA_RMS {
+            }
+            [
+                position = 6896, 7328
+            ]
+
+            component "core/Termination" IB_RMS {
+            }
+            [
+                position = 6896, 7384
+            ]
+
+            component "core/Termination" IC_RMS {
+            }
+            [
+                position = 7248, 6880
+            ]
+
+            component "core/Termination" I_RMS {
+            }
+            [
+                position = 7248, 6936
+            ]
+
+            component "core/Termination" Freq {
+            }
+            [
+                position = 6544, 7384
+            ]
+
+            component "core/Termination" POWER_Q {
+            }
+            [
+                position = 7248, 7048
+            ]
+
+            component "core/Termination" POWER_S {
+            }
+            [
+                position = 7248, 7104
+            ]
+
+            component "core/Termination" POWER_PF {
+            }
+            [
+                position = 7248, 7160
+            ]
+
+            component "core/Termination" POWER_PA {
+            }
+            [
+                position = 7904, 6992
+            ]
+
+            component "core/Termination" POWER_PB {
+            }
+            [
+                position = 7904, 7048
+            ]
+
+            component "core/Termination" POWER_PC {
+            }
+            [
+                position = 7904, 7104
+            ]
+
+            component "core/Termination" POWER_QA {
+            }
+            [
+                position = 7904, 7160
+            ]
+
+            component "core/Termination" POWER_QB {
+            }
+            [
+                position = 7904, 7216
+            ]
+
+            component "core/Termination" POWER_QC {
+            }
+            [
+                position = 7904, 7272
+            ]
+
+            component "core/Termination" POWER_SA {
+            }
+            [
+                position = 8144, 6992
+            ]
+
+            component "core/Termination" POWER_SB {
+            }
+            [
+                position = 8144, 7048
+            ]
+
+            component "core/Termination" POWER_SC {
+            }
+            [
+                position = 8144, 7104
+            ]
+
+            component "core/Termination" POWER_PFA {
+            }
+            [
+                position = 8144, 7160
+            ]
+
+            component "core/Termination" POWER_PFB {
+            }
+            [
+                position = 8144, 7216
+            ]
+
+            component "core/Termination" POWER_PFC {
+            }
+            [
+                position = 8144, 7272
+            ]
+
+            component "core/Gain" gain {
+                gain = "[0]*12"
+            }
+            [
+                position = 7936, 8008
+            ]
+
+            component "core/Termination" VAn {
+            }
+            [
+                position = 6544, 6880
+            ]
+
+            component "core/Termination" VBn {
+            }
+            [
+                position = 6544, 6936
+            ]
+
+            component "core/Termination" VCn {
+            }
+            [
+                position = 6544, 6992
+            ]
+
+            port Input {
+                position = left:1
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 6840, 8008
+                rotation = left
+            ]
+
+            port POWER_P {
+                position = right:123
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 7248, 6992
+            ]
+
+            tag GoToVABRMS {
+                value = "VAB_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7528
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromPF {
+                value = "POWER_PF"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7160
+                size = 60, 20
+            ]
+
+            tag fromIB {
+                value = "IB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7272
+                size = 60, 20
+            ]
+
+            tag GoToQ {
+                value = "POWER_Q"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7720
+                size = 60, 20
+            ]
+
+            tag fromS {
+                value = "POWER_S"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7104
+                size = 60, 20
+            ]
+
+            tag fromVCARMS {
+                value = "VCA_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7216
+                size = 60, 20
+            ]
+
+            tag GoToS {
+                value = "POWER_S"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7752
+                size = 60, 20
+            ]
+
+            tag fromVCA {
+                value = "VCA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7160
+                size = 60, 20
+            ]
+
+            tag GoToVNRMS {
+                value = "VN_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7816
+                size = 60, 20
+            ]
+
+            tag GoToIARMS {
+                value = "IA_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7608
+                size = 60, 20
+            ]
+
+            tag fromIA {
+                value = "IA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7216
+                size = 60, 20
+            ]
+
+            tag fromVBn {
+                value = "VBn"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 6936
+                size = 59, 20
+            ]
+
+            tag fromVBnRMS {
+                value = "VBn_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 6936
+                size = 60, 20
+            ]
+
+            tag fromICRMS {
+                value = "IC_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 6880
+                size = 60, 20
+            ]
+
+            tag GoToPF {
+                value = "POWER_PF"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7768
+                size = 60, 20
+            ]
+
+            tag fromIBRMS {
+                value = "IB_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7384
+                size = 60, 20
+            ]
+
+            tag fromP {
+                value = "POWER_P"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 6992
+                size = 60, 20
+            ]
+
+            tag GoToVCARMS {
+                value = "VCA_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7560
+                size = 60, 20
+            ]
+
+            tag fromVLL_RMS {
+                value = "VLL_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7272
+                size = 60, 20
+            ]
+
+            tag fromVCnRMS {
+                value = "VCn_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 6992
+                size = 60, 20
+            ]
+
+            tag fromVAB {
+                value = "VAB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7048
+                size = 60, 20
+            ]
+
+            tag fromVBC {
+                value = "VBC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7104
+                size = 60, 20
+            ]
+
+            tag GoToVCnRMS {
+                value = "VCn_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7576
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToICRMS {
+                value = "IC_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7656
+                size = 60, 20
+            ]
+
+            tag fromIN {
+                value = "IN"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7328
+                size = 60, 20
+            ]
+
+            tag fromI_RMS {
+                value = "I_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 6936
+                size = 60, 20
+            ]
+
+            tag fromVAn {
+                value = "VAn"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 6880
+                size = 60, 20
+            ]
+
+            tag GoToIN {
+                value = "IN"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7848
+                size = 60, 20
+            ]
+
+            tag GoToVBnRMS {
+                value = "VBn_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7608
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromIARMS {
+                value = "IA_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7328
+                size = 60, 20
+            ]
+
+            tag GoToIBRMS {
+                value = "IB_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7624
+                size = 60, 20
+            ]
+
+            tag GoToVN {
+                value = "VN"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7248, 7800
+                size = 60, 20
+            ]
+
+            tag fromVCn {
+                value = "VCn"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 6992
+                size = 60, 20
+            ]
+
+            tag GoToFreq {
+                value = "Freq"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7656
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToIB {
+                value = "IB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7704
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromVAnRMS {
+                value = "VAn_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 6880
+                size = 60, 20
+            ]
+
+            tag GoToIc {
+                value = "IC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7672
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromVN {
+                value = "VN"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7216
+                size = 60, 20
+            ]
+
+            tag GoToVAn {
+                value = "VAn"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7864
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToP {
+                value = "POWER_P"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7480, 7696
+                size = 60, 20
+            ]
+
+            tag GoToVBCRMS {
+                value = "VBC_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7528
+                scale = 1, -1
+                size = 60, 20
+            ]
+
+            tag GoToINRMS {
+                value = "IN_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7864
+                size = 60, 20
+            ]
+
+            tag fromINRMS {
+                value = "IN_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7384
+                size = 60, 20
+            ]
+
+            tag GoToI_RMS {
+                value = "I_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7672
+                size = 60, 20
+            ]
+
+            tag GoToIA {
+                value = "IA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7720
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToVCA {
+                value = "VCA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7752
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromVLn_RMS {
+                value = "VLn_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7048
+                size = 60, 20
+            ]
+
+            tag fromIC {
+                value = "IC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7328
+                size = 60, 20
+            ]
+
+            tag GoToVAnRMS {
+                value = "VAn_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7624
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToVAB {
+                value = "VAB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7800
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToVCn {
+                value = "VCn"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7816
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromVBCRMS {
+                value = "VBC_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7160
+                size = 60, 20
+            ]
+
+            tag fromVNRMS {
+                value = "VN_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7272
+                size = 60, 20
+            ]
+
+            tag fromFreq {
+                value = "Freq"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6440, 7384
+                size = 60, 20
+            ]
+
+            tag GoToVLL_RMS {
+                value = "VLL_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7152, 7576
+                size = 60, 20
+            ]
+
+            tag fromQ {
+                value = "POWER_Q"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7152, 7048
+                size = 63, 20
+            ]
+
+            tag GoToVLn_RMS {
+                value = "VLn_RMS"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7560
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToVBn {
+                value = "VBn"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6424, 7848
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToVBC {
+                value = "VBC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6528, 7768
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag fromVABRMS {
+                value = "VAB_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6800, 7104
+                size = 60, 20
+            ]
+
+            tag GoToPA {
+                value = "POWER_PA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7808, 7864
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToQC {
+                value = "POWER_QC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7704, 7752
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToQA {
+                value = "POWER_QA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7704, 7800
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToPC {
+                value = "POWER_PC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7808, 7816
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToPB {
+                value = "POWER_PB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7704, 7848
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToQB {
+                value = "POWER_QB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7808, 7768
+                scale = -1, -1
+                size = 60, 20
+            ]
+
+            tag GoToSA {
+                value = "POWER_SA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8272, 7752
+                size = 60, 20
+            ]
+
+            tag GoToPFA {
+                value = "POWER_PFA"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8176, 7816
+                size = 60, 20
+            ]
+
+            tag GoToSB {
+                value = "POWER_SB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8176, 7768
+                size = 60, 20
+            ]
+
+            tag GoToPFB {
+                value = "POWER_PFB"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8272, 7848
+                size = 60, 20
+            ]
+
+            tag GoToSC {
+                value = "POWER_SC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8272, 7800
+                size = 60, 20
+            ]
+
+            tag GoToPFC {
+                value = "POWER_PFC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8176, 7864
+                size = 60, 20
+            ]
+
+            tag fromQB {
+                value = "POWER_QB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 7216
+                size = 60, 20
+            ]
+
+            tag fromPC {
+                value = "POWER_PC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 7104
+                size = 60, 20
+            ]
+
+            tag fromQA {
+                value = "POWER_QA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 7160
+                size = 60, 20
+            ]
+
+            tag fromPA {
+                value = "POWER_PA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 6992
+                size = 60, 20
+            ]
+
+            tag fromPB {
+                value = "POWER_PB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 7048
+                size = 60, 20
+            ]
+
+            tag fromQC {
+                value = "POWER_QC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7808, 7272
+                size = 60, 20
+            ]
+
+            tag fromSB {
+                value = "POWER_SB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7048
+                size = 60, 20
+            ]
+
+            tag fromSC {
+                value = "POWER_SC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7104
+                size = 60, 20
+            ]
+
+            tag fromSA {
+                value = "POWER_SA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 6992
+                size = 60, 20
+            ]
+
+            tag fromPFA {
+                value = "POWER_PFA"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7160
+                size = 60, 20
+            ]
+
+            tag fromPFC {
+                value = "POWER_PFC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7272
+                size = 60, 20
+            ]
+
+            tag fromPFB {
+                value = "POWER_PFB"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7216
+                size = 60, 20
+            ]
+
+            tag extra_in {
+                value = "IN_RMS"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7840, 8008
+                size = 60, 20
+            ]
+
+            connect GoToFreq input_bus.out9 as Connection2934
+            connect GoToIARMS input_bus.out18 as Connection2869
+            connect GoToIBRMS input_bus.out19 as Connection2870
+            connect GoToICRMS input_bus.out20 as Connection2871
+            connect GoToIN input_bus.out28 as Connection2939
+            connect GoToINRMS input_bus.out29 as Connection2940
+            connect GoToI_RMS input_bus.out21 as Connection2935
+            connect GoToP input_bus.out22 as Connection2873
+            connect GoToPF input_bus.out25 as Connection2936
+            connect GoToQ input_bus.out23 as Connection2874
+            connect GoToS input_bus.out24 as Connection2875
+            connect GoToVCARMS input_bus.out16 as Connection2867
+            connect GoToVLL_RMS input_bus.out17 as Connection2868
+            connect GoToVN input_bus.out26 as Connection2937
+            connect GoToVNRMS input_bus.out27 as Connection2938
+            connect IN.in fromIN as Connection2943
+            connect Input input_bus.in as Connection2886
+            connect VN_RMS.in fromVNRMS as Connection2942
+            connect fromINRMS IN_RMS.in as Connection2944
+            connect fromVN VN.in as Connection2941
+            connect input_bus.out6 GoToIA as Connection2882
+            connect input_bus.out7 GoToIB as Connection2881
+            connect input_bus.out8 GoToIc as Connection2885
+            connect input_bus.out3 GoToVAB as Connection2888
+            connect input_bus.out14 GoToVABRMS as Connection2894
+            connect input_bus.out GoToVAn as Connection2887
+            connect input_bus.out10 GoToVAnRMS as Connection2890
+            connect input_bus.out4 GoToVBC as Connection2896
+            connect input_bus.out15 GoToVBCRMS as Connection2879
+            connect input_bus.out1 GoToVBn as Connection2892
+            connect input_bus.out11 GoToVBnRMS as Connection2899
+            connect input_bus.out5 GoToVCA as Connection2883
+            connect input_bus.out2 GoToVCn as Connection2889
+            connect input_bus.out12 GoToVCnRMS as Connection2893
+            connect input_bus.out13 GoToVLn_RMS as Connection2884
+            connect GoToPA extra_input_bus.out as Connection2945
+            connect GoToPB extra_input_bus.out1 as Connection2946
+            connect GoToPC extra_input_bus.out2 as Connection2947
+            connect GoToQA extra_input_bus.out3 as Connection2948
+            connect GoToQB extra_input_bus.out4 as Connection2949
+            connect GoToQC extra_input_bus.out5 as Connection2950
+            connect GoToSA extra_input_bus.out6 as Connection2951
+            connect GoToSB extra_input_bus.out7 as Connection2952
+            connect GoToSC extra_input_bus.out8 as Connection2953
+            connect GoToPFA extra_input_bus.out9 as Connection2954
+            connect GoToPFB extra_input_bus.out10 as Connection2955
+            connect GoToPFC extra_input_bus.out11 as Connection2956
+            connect fromVAnRMS VAn_RMS.in as ConnVAnRMSport
+            connect fromVBnRMS VBn_RMS.in as ConnVBnRMSport
+            connect fromVCnRMS VCn_RMS.in as ConnVCnRMSport
+            connect fromVLn_RMS VLn_RMS.in as ConnVLn_RMSport
+            connect fromVAB VAB.in as ConnVABport
+            connect fromVBC VBC.in as ConnVBCport
+            connect fromVCA VCA.in as ConnVCAport
+            connect fromVABRMS VAB_RMS.in as ConnVABRMSport
+            connect fromVBCRMS VBC_RMS.in as ConnVBCRMSport
+            connect fromVCARMS VCA_RMS.in as ConnVCARMSport
+            connect fromVLL_RMS VLL_RMS.in as ConnVLL_RMSport
+            connect fromIA IA.in as ConnIAport
+            connect fromIB IB.in as ConnIBport
+            connect fromIC IC.in as ConnICport
+            connect fromIARMS IA_RMS.in as ConnIARMSport
+            connect fromIBRMS IB_RMS.in as ConnIBRMSport
+            connect fromICRMS IC_RMS.in as ConnICRMSport
+            connect fromI_RMS I_RMS.in as ConnI_RMSport
+            connect fromFreq Freq.in as ConnFreqport
+            connect fromQ POWER_Q.in as ConnQport
+            connect fromS POWER_S.in as ConnSport
+            connect fromPF POWER_PF.in as ConnPFport
+            connect fromPA POWER_PA.in as ConnPAport
+            connect fromPB POWER_PB.in as ConnPBport
+            connect fromPC POWER_PC.in as ConnPCport
+            connect fromQA POWER_QA.in as ConnQAport
+            connect fromQB POWER_QB.in as ConnQBport
+            connect fromQC POWER_QC.in as ConnQCport
+            connect fromSA POWER_SA.in as ConnSAport
+            connect fromSB POWER_SB.in as ConnSBport
+            connect fromSC POWER_SC.in as ConnSCport
+            connect fromPFA POWER_PFA.in as ConnPFAport
+            connect fromPFB POWER_PFB.in as ConnPFBport
+            connect fromPFC POWER_PFC.in as ConnPFCport
+            connect extra_in gain.in as conn_extra_in
+            connect gain.out extra_input_bus.in as conn_2
+            connect fromVAn VAn.in as ConnVAnport
+            connect fromVBn VBn.in as ConnVBnport
+            connect fromVCn VCn.in as ConnVCnport
+            connect fromP POWER_P as ConnPport
+
+            power_p = "True"
+            van = "False"
+            vbn = "False"
+            vcn = "False"
+
+            mask {
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This component is intended to be used with the \"Three-phase Meter\" to enable easy selection of the measured signals.</p></body></html>"
+                help_file = "meter_split.html"
+
+                van {
+                    label = "Phase voltage measurement (VAn)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "True"
+                    group = "Phase Voltage:1"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VAn", "VAn", 101)
+                    ENDCODE
+                }
+
+                vbn {
+                    label = "Phase voltage measurement (VBn)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "True"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VBn", "VBn", 102)
+                    ENDCODE
+                }
+
+                vcn {
+                    label = "Phase voltage measurement (VCn)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "True"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VCn", "VCn", 103)
+                    ENDCODE
+                }
+
+                van_rms {
+                    label = "Phase voltage RMS measurement (VAn_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VAnRMS", "VAn_RMS", 111)
+                    ENDCODE
+                }
+
+                vbn_rms {
+                    label = "Phase voltage RMS measurement (VBn_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VBnRMS", "VBn_RMS", 112)
+                    ENDCODE
+                }
+
+                vcn_rms {
+                    label = "Phase voltage RMS measurement (VCn_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VCnRMS", "VCn_RMS", 113)
+                    ENDCODE
+                }
+
+                vln_rms {
+                    label = "Average phase voltage RMS measurement (VLn_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VLn_RMS", "VLn_RMS", 114)
+                    ENDCODE
+                }
+
+                vn {
+                    label = "Estimated neutral voltage measurement (VN)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VN", "VN", 127)
+                    ENDCODE
+                }
+
+                vn_rms {
+                    label = "Estimated neutral voltage RMS measurement (VN_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Phase Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VNRMS", "VN_RMS", 128)
+                    ENDCODE
+                }
+
+                vab {
+                    label = "Line voltage measurement (VAB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage:2"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VAB", "VAB", 104)
+                    ENDCODE
+                }
+
+                vbc {
+                    label = "Line voltage measurement (VBC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VBC", "VBC", 105)
+                    ENDCODE
+                }
+
+                vca {
+                    label = "Line voltage measurement (VCA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VCA", "VCA", 106)
+                    ENDCODE
+                }
+
+                vab_rms {
+                    label = "Line voltage RMS measurement (VAB_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VABRMS", "VAB_RMS", 115)
+                    ENDCODE
+                }
+
+                vbc_rms {
+                    label = "Line voltage RMS measurement (VBC_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VBCRMS", "VBC_RMS", 116)
+                    ENDCODE
+                }
+
+                vca_rms {
+                    label = "Line voltage RMS measurement (VCA_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VCARMS", "VCA_RMS", 117)
+                    ENDCODE
+                }
+
+                vll_rms {
+                    label = "Average line voltage RMS measurement (VLL_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Line Voltage"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "VLL_RMS", "VLL_RMS", 118)
+                    ENDCODE
+                }
+
+                ia {
+                    label = "Current measurement (IA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current:3"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IA", "IA", 107)
+                    ENDCODE
+                }
+
+                ib {
+                    label = "Current measurement (IB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IB", "IB", 108)
+                    ENDCODE
+                }
+
+                ic {
+                    label = "Current measurement (IC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IC", "IC", 109)
+                    ENDCODE
+                }
+
+                ia_rms {
+                    label = "Current RMS measurement (IA_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IARMS", "IA_RMS", 119)
+                    ENDCODE
+                }
+
+                ib_rms {
+                    label = "Current RMS measurement (IB_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IBRMS", "IB_RMS", 120)
+                    ENDCODE
+                }
+
+                ic_rms {
+                    label = "Current RMS measurement (IC_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "ICRMS", "IC_RMS", 121)
+                    ENDCODE
+                }
+
+                i_rms {
+                    label = "Average current RMS measurement (I_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "I_RMS", "I_RMS", 122)
+                    ENDCODE
+                }
+
+                ineutral {
+                    label = "Estimated neutral current measurement (IN)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "IN", "IN", 129)
+                    ENDCODE
+                }
+
+                in_rms {
+                    label = "Estimated neutral current RMS measurement (IN_RMS)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Current"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "INRMS", "IN_RMS", 130)
+                    ENDCODE
+                }
+
+                freq {
+                    label = "Frequency measurement (Freq)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Frequency:4"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "Freq", "Freq", 110)
+                    ENDCODE
+                }
+
+                power_p {
+                    label = "Active power measurement (POWER_P)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Power:5"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "P", "POWER_P", 123)
+                    ENDCODE
+                }
+
+                power_q {
+                    label = "Reactive power measurement (POWER_Q)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Power"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "Q", "POWER_Q", 124)
+                    ENDCODE
+                }
+
+                power_s {
+                    label = "Apparent power measurement (POWER_S)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Power"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "S", "POWER_S", 125)
+                    ENDCODE
+                }
+
+                power_pf {
+                    label = "Power factor measurement (POWER_PF)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Power"
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PF", "POWER_PF", 126)
+                    ENDCODE
+                }
+
+                enable_extra_in {
+                    label = "Enable extra input port"
+                    widget = combo
+                    combo_values = "Yes", "No"
+                    type = string
+                    default_value = "No"
+                    group = "Extra Meas."
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_extra_in(mdl, container_handle, new_value)
+                    ENDCODE
+
+                    CODE property_value_edited
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.show_extra_properties(mdl, container_handle, new_value)
+                    ENDCODE
+                }
+
+                power_pa {
+                    label = "Active power measurement phase A (POWER_PA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas.:6"
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PA", "POWER_PA", 131)
+                    ENDCODE
+                }
+
+                power_pb {
+                    label = "Active power measurement phase B (POWER_PB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PB", "POWER_PB", 132)
+                    ENDCODE
+                }
+
+                power_pc {
+                    label = "Active power measurement phase C (POWER_PC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PC", "POWER_PC", 133)
+                    ENDCODE
+                }
+
+                power_qa {
+                    label = "Reactive power measurement phase A (POWER_QA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "QA", "POWER_QA", 134)
+                    ENDCODE
+                }
+
+                power_qb {
+                    label = "Reactive power measurement phase B (POWER_QB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "QB", "POWER_QB", 135)
+                    ENDCODE
+                }
+
+                power_qc {
+                    label = "Reactive power measurement phase C (POWER_QC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "QC", "POWER_QC", 136)
+                    ENDCODE
+                }
+
+                power_sa {
+                    label = "Apparent power measurement phase A (POWER_SA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "SA", "POWER_SA", 137)
+                    ENDCODE
+                }
+
+                power_sb {
+                    label = "Apparent power measurement phase B (POWER_SB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "SB", "POWER_SB", 138)
+                    ENDCODE
+                }
+
+                power_sc {
+                    label = "Apparent power measurement phase C (POWER_SC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "SC", "POWER_SC", 139)
+                    ENDCODE
+                }
+
+                power_pfa {
+                    label = "Power factor measurement phase A (POWER_PFA)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PFA", "POWER_PFA", 140)
+                    ENDCODE
+                }
+
+                power_pfb {
+                    label = "Power factor measurement phase B (POWER_PFB)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PFB", "POWER_PFB", 141)
+                    ENDCODE
+                }
+
+                power_pfc {
+                    label = "Power factor measurement phase C (POWER_PFC)"
+                    widget = checkbox
+                    type = bool
+                    default_value = "False"
+                    group = "Extra Meas."
+                    nonvisible
+                    no_evaluate
+
+                    CODE property_value_changed
+                        mtr_splt = return_mtr_splt(mdl)
+                        mtr_splt.place_port(mdl, container_handle, new_value, "PFC", "POWER_PFC", 142)
+                    ENDCODE
+                }
+
+                CODE init
+                    import importlib
+                    import typhoon.import_path.handlers.meter_split as mtr_splt
+                    importlib.reload(mtr_splt)
+                
+                    def return_mtr_splt(mdl):
+                        return mtr_splt
+                ENDCODE
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec_()
+                    
+                ENDCODE
+            }
+        }
+        [
+            position = 8864, 7776
+            scale = -1, 1
+            size = 96, 80
+        ]
+
+        component "core/Variable Load (Generic)" "Variable Load (Generic)1" {
+            Pnom = "20e3"
+            Snom = "np.sqrt(2)*20e3"
+            Tfast = "Ts1"
+            Tslow = "Ts2"
+            resistance_cont = "1.0"
+        }
+        [
+            position = 8784, 8504
+            size = 144, 136
+        ]
+
+        component Subsystem "Variable Load (Generic) UI1" {
+            layout = dynamic
+            component "core/Probe" Enable_fb {
+            }
+            [
+                position = 7952, 8024
+            ]
+
+            component "core/Probe" PFmeas {
+            }
+            [
+                position = 7600, 8200
+            ]
+
+            component "core/SCADA Input" Qref {
+                execution_rate = "inherit"
+                max = "1e8"
+                min = "-1e8"
+                signal_access = "Inherit"
+                unit = "pu"
+            }
+            [
+                position = 8600, 7736
+            ]
+
+            component "core/SCADA Input" Enable {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8600, 7568
+            ]
+
+            component "core/SCADA Input" Pref {
+                execution_rate = "inherit"
+                max = "1e8"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu"
+            }
+            [
+                position = 8384, 7672
+            ]
+
+            component "core/Probe" Vload_rms_meas_V {
+            }
+            [
+                position = 7568, 8216
+            ]
+
+            component "core/Probe" Qmeas_kVAr {
+                streaming_en = "True"
+            }
+            [
+                position = 7648, 8160
+            ]
+
+            component "core/Probe" Smeas_kVA {
+            }
+            [
+                position = 7636, 8200
+            ]
+
+            component "core/Probe" Pnom_kW {
+            }
+            [
+                position = 7848, 8072
+            ]
+
+            component "core/Probe" Qref_fb_kVAr {
+            }
+            [
+                position = 7880, 8048
+            ]
+
+            component "core/Probe" Snom_kVA {
+            }
+            [
+                position = 7792, 8104
+            ]
+
+            component "core/Probe" Fmeas_Hz {
+                streaming_en = "True"
+            }
+            [
+                position = 7760, 8120
+            ]
+
+            component "core/Probe" Pref_fb_kW {
+            }
+            [
+                position = 7920, 8040
+            ]
+
+            component "core/Probe" Qnom_kVAr {
+            }
+            [
+                position = 7816, 8088
+            ]
+
+            component "core/Probe" Vgrid_rms_meas_kV {
+            }
+            [
+                position = 7728, 8136
+            ]
+
+            component "core/Probe" Pmeas_kW {
+                streaming_en = "True"
+            }
+            [
+                position = 7892, 8240
+            ]
+
+            component "core/Probe" MCB_status {
+            }
+            [
+                position = 7536, 8232
+            ]
+
+            component "core/Probe" alarm_msg {
+            }
+            [
+                position = 7504, 8248
+            ]
+
+            component "core/SCADA Input" "Reset alarms" {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8600, 7624
+            ]
+
+            component "core/SCADA Input" "Pref rate of change" {
+                def_value = "1e6"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 8600, 7792
+            ]
+
+            component "core/SCADA Input" "Qref rate of change" {
+                def_value = "1e6"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 8600, 7848
+            ]
+
+            component "core/SCADA Input" "P dependency type" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "2"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8600, 7904
+            ]
+
+            component "core/SCADA Input" "Q dependency type" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "2"
+                min = "0"
+                unit = ""
+            }
+            [
+                position = 8600, 7960
+            ]
+
+            component "core/SCADA Input" "P(V) k1" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = ""
+            }
+            [
+                position = 8600, 8016
+            ]
+
+            component "core/SCADA Input" "P(V) k2" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = "1/pu"
+            }
+            [
+                position = 8600, 8072
+            ]
+
+            component "core/SCADA Input" "Q(V) k1" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = ""
+            }
+            [
+                position = 8600, 8248
+            ]
+
+            component "core/SCADA Input" "Q(V) k2" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = "1/pu"
+            }
+            [
+                position = 8600, 8304
+            ]
+
+            component "core/SCADA Input" "P(f) k1" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = ""
+            }
+            [
+                position = 8600, 8128
+            ]
+
+            component "core/SCADA Input" "P(f) k2" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = "1/pu"
+            }
+            [
+                position = 8600, 8192
+            ]
+
+            component "core/SCADA Input" "Q(f) k1" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = ""
+            }
+            [
+                position = 8600, 8360
+            ]
+
+            component "core/SCADA Input" "Q(f) k2" {
+                def_value = "0.0"
+                execution_rate = "inherit"
+                max = "100"
+                min = "-100"
+                unit = "1/pu"
+            }
+            [
+                position = 8600, 8416
+            ]
+
+            component "core/DER (Generic) Control Join" "DER (Generic) Control Join" {
+                Enable = "True"
+                F_alarm_lower_limit = "True"
+                F_alarm_upper_limit = "True"
+                I_alarm_upper_limit = "True"
+                P_V_k1 = "True"
+                P_V_k2 = "True"
+                P_dependency_type = "True"
+                P_f_k1 = "True"
+                P_f_k2 = "True"
+                Pref = "True"
+                Pref_rate_of_change = "True"
+                Q_V_k1 = "True"
+                Q_V_k2 = "True"
+                Q_dependency_type = "True"
+                Q_f_k1 = "True"
+                Q_f_k2 = "True"
+                Qref = "True"
+                Qref_rate_of_change = "True"
+                Reset_alarms = "True"
+                S_alarm_upper_limit = "True"
+                V_alarm_lower_limit = "True"
+                V_alarm_upper_limit = "True"
+                component_select = "Variable Load"
+            }
+            [
+                position = 8952, 8160
+                size = 192, 368
+            ]
+
+            component "core/DER (Generic) Output Split" "DER (Generic) Output Split" {
+                Enable_fb = "True"
+                Fmeas_Hz = "True"
+                Fref_fb_Hz = "True"
+                MCB_status = "True"
+                PFmeas = "True"
+                Pmeas_kW = "True"
+                Pnom_kW = "True"
+                Pref_fb_kW = "True"
+                Qmeas_kVAr = "True"
+                Qnom_kVAr = "True"
+                Qref_fb_kVAr = "True"
+                Smeas_kVA = "True"
+                Snom_kVA = "True"
+                Vgrid_rms_meas_kV = "True"
+                Vload_rms_meas_V = "True"
+                Vrms_ref_fb_V = "True"
+                alarm_msg = "True"
+                component_select = "Variable Load"
+            }
+            [
+                position = 7312, 8136
+                size = 128, 288
+            ]
+
+            component "core/DER (Generic) External Join" "DER (Generic) External Join1" {
+                component_select = "Variable Load"
+            }
+            [
+                position = 8952, 8936
+                size = 192, 64
+            ]
+
+            component "core/SCADA Input" "V alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8480
+            ]
+
+            component "core/SCADA Input" "V alarm lower limit" {
+                def_value = "0.5"
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8536
+            ]
+
+            component "core/SCADA Input" "F alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8592
+            ]
+
+            component "core/SCADA Input" "F alarm lower limit" {
+                def_value = "0.5"
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8648
+            ]
+
+            component "core/SCADA Input" "S alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8704
+            ]
+
+            component "core/SCADA Input" "I alarm upper limit" {
+                def_value = "1.5"
+                execution_rate = "inherit"
+                min = "1"
+                unit = "pu"
+            }
+            [
+                position = 8600, 8760
+            ]
+
+            component "core/Probe" "Pref Probe" {
+            }
+            [
+                position = 8480, 7488
+            ]
+
+            port ui_in {
+                label = "ui_in"
+                position = right:1
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7136, 8136
+            ]
+
+            port ui_out {
+                label = "ui_out"
+                position = right:2
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 9112, 8160
+            ]
+
+            port ext {
+                label = "ext"
+                position = right:3
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 9128, 8936
+            ]
+
+            port "Load AC Power" {
+                label = "Load AC Power"
+                position = left:4
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 7816, 8312
+            ]
+
+            junction Junction1 sp
+            [
+                position = 8440, 7672
+            ]
+
+            junction Junction2 sp
+            [
+                position = 7776, 8184
+            ]
+
+            connect "DER (Generic) Control Join.ui_out" ui_out as Connection2888
+            connect Enable.out "DER (Generic) Control Join.Enable" as Connection2889
+            connect "Reset alarms.out" "DER (Generic) Control Join.Reset alarms" as Connection2890
+            [
+                position = 0, 0
+                breakpoints = 8832, 7752; 8832, 8008
+            ]
+            connect Qref.out "DER (Generic) Control Join.Qref" as Connection2892
+            [
+                position = 0, 0
+                breakpoints = 8816, 7864; 8816, 8040
+            ]
+            connect "Pref rate of change.out" "DER (Generic) Control Join.Pref rate of change" as Connection2893
+            [
+                position = 0, 0
+                breakpoints = 8808, 7920; 8808, 8056
+            ]
+            connect "Qref rate of change.out" "DER (Generic) Control Join.Qref rate of change" as Connection2894
+            [
+                position = 0, 0
+                breakpoints = 8800, 7976; 8800, 8072
+            ]
+            connect "P dependency type.out" "DER (Generic) Control Join.P dependency type" as Connection2895
+            [
+                position = 0, 0
+                breakpoints = 8792, 8032; 8792, 8088
+            ]
+            connect "Q dependency type.out" "DER (Generic) Control Join.Q dependency type" as Connection2896
+            [
+                position = 0, 0
+                breakpoints = 8784, 8088; 8784, 8104
+            ]
+            connect "P(V) k1.out" "DER (Generic) Control Join.P(V) k1" as Connection2897
+            [
+                position = 0, 0
+                breakpoints = 8776, 8040; 8776, 8120
+            ]
+            connect "P(V) k2.out" "DER (Generic) Control Join.P(V) k2" as Connection2898
+            [
+                position = 0, 0
+                breakpoints = 8768, 8096; 8768, 8136
+            ]
+            connect "Q(f) k2.out" "DER (Generic) Control Join.Q(f) k2" as Connection2899
+            [
+                position = 0, 0
+                breakpoints = 8792, 8416; 8792, 8232
+            ]
+            connect "Q(f) k1.out" "DER (Generic) Control Join.Q(f) k1" as Connection2900
+            [
+                position = 0, 0
+                breakpoints = 8784, 8360; 8784, 8216
+            ]
+            connect "Q(V) k2.out" "DER (Generic) Control Join.Q(V) k2" as Connection2901
+            [
+                position = 0, 0
+                breakpoints = 8776, 8304; 8776, 8200
+            ]
+            connect "Q(V) k1.out" "DER (Generic) Control Join.Q(V) k1" as Connection2902
+            [
+                position = 0, 0
+                breakpoints = 8768, 8248; 8768, 8184
+            ]
+            connect "P(f) k2.out" "DER (Generic) Control Join.P(f) k2" as Connection2903
+            [
+                position = 0, 0
+                breakpoints = 8760, 8192; 8760, 8168
+            ]
+            connect "P(f) k1.out" "DER (Generic) Control Join.P(f) k1" as Connection2904
+            [
+                position = 0, 0
+                breakpoints = 8632, 8128; 8760, 8128; 8760, 8152
+            ]
+            connect ui_in "DER (Generic) Output Split.ui_in" as Connection2905
+            connect Enable_fb.in "DER (Generic) Output Split.Enable_fb" as Connection2906
+            connect "DER (Generic) Output Split.Pref_fb_kW" Pref_fb_kW.in as Connection2907
+            connect Qref_fb_kVAr.in "DER (Generic) Output Split.Qref_fb_kVAr" as Connection2908
+            connect "DER (Generic) Output Split.Pnom_kW" Pnom_kW.in as Connection2911
+            connect Qnom_kVAr.in "DER (Generic) Output Split.Qnom_kVAr" as Connection2912
+            connect "DER (Generic) Output Split.Snom_kVA" Snom_kVA.in as Connection2913
+            connect Fmeas_Hz.in "DER (Generic) Output Split.Fmeas_Hz" as Connection2914
+            connect "DER (Generic) Output Split.Vgrid_rms_meas_kV" Vgrid_rms_meas_kV.in as Connection2915
+            connect Qmeas_kVAr.in "DER (Generic) Output Split.Qmeas_kVAr" as Connection2917
+            connect "DER (Generic) Output Split.Smeas_kVA" Smeas_kVA.in as Connection2918
+            connect PFmeas.in "DER (Generic) Output Split.PFmeas" as Connection2919
+            connect "DER (Generic) Output Split.Vload_rms_meas_V" Vload_rms_meas_V.in as Connection2920
+            connect MCB_status.in "DER (Generic) Output Split.MCB_status" as Connection2921
+            connect "DER (Generic) Output Split.alarm_msg" alarm_msg.in as Connection2922
+            connect ext "DER (Generic) External Join1.ext" as Connection2923
+            connect "V alarm upper limit.out" "DER (Generic) Control Join.V alarm upper limit" as Connection2924
+            [
+                position = 0, 0
+                breakpoints = 8800, 8480; 8800, 8248
+            ]
+            connect "V alarm lower limit.out" "DER (Generic) Control Join.V alarm lower limit" as Connection2925
+            [
+                position = 0, 0
+                breakpoints = 8808, 8536; 8808, 8264
+            ]
+            connect "F alarm upper limit.out" "DER (Generic) Control Join.F alarm upper limit" as Connection2926
+            [
+                position = 0, 0
+                breakpoints = 8816, 8592; 8816, 8280
+            ]
+            connect "F alarm lower limit.out" "DER (Generic) Control Join.F alarm lower limit" as Connection2927
+            [
+                position = 0, 0
+                breakpoints = 8824, 8648; 8824, 8296
+            ]
+            connect "S alarm upper limit.out" "DER (Generic) Control Join.S alarm upper limit" as Connection2928
+            [
+                position = 0, 0
+                breakpoints = 8832, 8704; 8832, 8312
+            ]
+            connect "I alarm upper limit.out" "DER (Generic) Control Join.I alarm upper limit" as Connection2929
+            connect Pref.out Junction1 as Connection2930
+            connect Junction1 "DER (Generic) Control Join.Pref" as Connection2931
+            [
+                breakpoints = 8824, 7808; 8824, 8024; 8856, 7920; 8856, 7920
+            ]
+            connect "Pref Probe.in" Junction1 as Connection2932
+            [
+                breakpoints = 8440, 7664
+            ]
+            connect "DER (Generic) Output Split.Pmeas_kW" Junction2 as Connection2937
+            [
+                breakpoints = 7616, 8164
+            ]
+            connect Junction2 Pmeas_kW.in as Connection2938
+            [
+                breakpoints = 7844, 8164
+            ]
+            connect "Load AC Power" Junction2 as Connection2939
+
+            mask {
+                icon = "image(\'variable_load_generic_ui.svg\')"
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User Interface subsystem intended to be used with \"Load (Generic)\" component.</p></body></html>"
+                help_file = "variable_load_generic.html#concept_a1t_vlx_nz__table_dlr_3tj_hlb"
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec_()
+                    
+                ENDCODE
+            }
+        }
+        [
+            position = 8576, 8504
+            hide_name = True
+            size = 120, 136
+        ]
+
+        component Subsystem "Grid UI1" {
+            layout = dynamic
+            component "core/Probe" Qmeas_kVAr {
+                streaming_en = "True"
+            }
+            [
+                position = 7968, 8048
+            ]
+
+            component "core/Probe" Connect_fb {
+            }
+            [
+                position = 8096, 7984
+            ]
+
+            component "core/Bus Split" "Bus Split1" {
+                outputs = "20"
+            }
+            [
+                position = 7688, 8136
+            ]
+
+            component "core/SCADA Input" Connect {
+                execution_rate = "inherit"
+                max = "1"
+                min = "0"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 8616, 8104
+            ]
+
+            component "core/Probe" Fmeas_Hz {
+                streaming_en = "True"
+            }
+            [
+                position = 8032, 8016
+            ]
+
+            component "core/Probe" Pmeas_kW {
+                streaming_en = "True"
+            }
+            [
+                position = 8000, 8032
+            ]
+
+            component "core/Probe" Smeas_kVA {
+            }
+            [
+                position = 7936, 8064
+            ]
+
+            component "core/Probe" Vrms_meas_kV {
+            }
+            [
+                position = 8064, 8000
+            ]
+
+            component "core/Probe" PFmeas {
+            }
+            [
+                position = 7904, 8080
+            ]
+
+            component "core/Bus Join" "Bus Join1" {
+                inputs = "4"
+            }
+            [
+                position = 8896, 8128
+            ]
+
+            component "core/Constant" reserved_outs {
+                execution_rate = "inherit"
+                value = "[0.0]*17"
+            }
+            [
+                position = 8792, 8152
+            ]
+
+            component "core/Termination" Termination1 {
+            }
+            [
+                position = 7872, 8192
+                hide_name = True
+            ]
+
+            component "core/Bus Join" reserved_ins {
+                inputs = "13"
+            }
+            [
+                position = 7784, 8192
+            ]
+
+            component "core/SCADA Input" Grid_Vrms_cmd {
+                def_value = "1"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu"
+            }
+            [
+                position = 8664, 8120
+            ]
+
+            component "core/SCADA Input" Grid_freq_cmd {
+                def_value = "1"
+                execution_rate = "inherit"
+                min = "0"
+                signal_access = "Inherit"
+                unit = "pu"
+            }
+            [
+                position = 8728, 8136
+            ]
+
+            port ui_out {
+                label = "ui_out"
+                position = right:1
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8976, 8128
+            ]
+
+            port ui_in {
+                label = "ui_in"
+                position = right:2
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7504, 8136
+            ]
+
+            connect "Bus Split1.out3" Pmeas_kW.in as Connection2725
+            connect "Bus Split1.out2" Fmeas_Hz.in as Connection2718
+            connect "Bus Split1.out1" Vrms_meas_kV.in as Connection2717
+            connect Qmeas_kVAr.in "Bus Split1.out4" as Connection2807
+            connect "Bus Split1.out" Connect_fb.in as Connection2719
+            connect "Bus Split1.out5" Smeas_kVA.in as Connection2806
+            connect Connect.out "Bus Join1.in" as Connection2808
+            connect "Bus Join1.out" ui_out as Connection2809
+            connect reserved_ins.in "Bus Split1.out7" as Connection2811
+            connect "Bus Split1.out8" reserved_ins.in1 as Connection2812
+            connect reserved_ins.in2 "Bus Split1.out9" as Connection2813
+            connect "Bus Split1.out10" reserved_ins.in3 as Connection2814
+            connect reserved_ins.in4 "Bus Split1.out11" as Connection2815
+            connect "Bus Split1.out12" reserved_ins.in5 as Connection2816
+            connect reserved_ins.in6 "Bus Split1.out13" as Connection2817
+            connect "Bus Split1.out14" reserved_ins.in7 as Connection2818
+            connect reserved_ins.in8 "Bus Split1.out15" as Connection2819
+            connect "Bus Split1.out16" reserved_ins.in9 as Connection2820
+            connect reserved_ins.in10 "Bus Split1.out17" as Connection2821
+            connect "Bus Split1.out18" reserved_ins.in11 as Connection2822
+            connect reserved_ins.in12 "Bus Split1.out19" as Connection2823
+            connect Termination1.in reserved_ins.out as Connection2824
+            connect PFmeas.in "Bus Split1.out6" as Connection2825
+            [
+                position = 0, 0
+                breakpoints = 7864, 8080; 7832, 8080; 7824, 8080; 7816, 8080; 7752, 8080
+            ]
+            connect ui_in "Bus Split1.in" as Connection2826
+            connect Grid_Vrms_cmd.out "Bus Join1.in1" as Connection2827
+            connect Grid_freq_cmd.out "Bus Join1.in2" as Connection2828
+            connect reserved_outs.out "Bus Join1.in3" as Connection2829
+
+            mask {
+                icon = "image(\'grid_generic_ui.svg\')"
+                description = "<html><head><meta name=\"qrichtext\" content=\"1\"></meta><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\"\"><p style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">User Interface subsystem intended to be used with \"Grid\" component.</p></body></html>"
+                help_file = "grid_generic.html?hl=grid%2Cui#concept_a1t_vlx_nz__table_z14_rwj_hlb"
+
+                CODE open
+                    from typhoon.apps.schematic_editor.dialogs.component_property_dialogs.general import RegularComponentPropertiesDialog
+                
+                    dialog = RegularComponentPropertiesDialog(
+                        component=component,
+                        property_container=component.masks[-1],
+                        current_diagram=current_diagram
+                    )
+                    dialog.exec_()
+                
+                ENDCODE
+            }
+        }
+        [
+            position = 9328, 7744
+            rotation = down
+            hide_name = True
+            scale = -1, 1
+            size = 56, 136
+        ]
+
+        component "core/Grid" Grid1 {
+            Sb = "1e6"
+            Tfast = "Ts1"
+            Vb = "400"
+            resistance_cont = "10.0"
+        }
+        [
+            position = 9536, 7744
+            rotation = down
+            size = 144, 136
+        ]
+
+        component "core/Three Phase TLM Core Coupling" "Core Coupling 1" {
+        }
+        [
+            position = 8600, 8024
+            size = 12, 256
+        ]
+
+        component "core/Three Phase TLM Core Coupling" "Core Coupling 2" {
+        }
+        [
+            position = 7960, 8024
+            size = 12, 256
+        ]
+
+        component "core/Three Phase TLM Core Coupling" "Core Coupling 3" {
+        }
+        [
+            position = 9200, 8024
+            size = 12, 256
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" "PV Contactor" {
+        }
+        [
+            position = 7616, 8188
+            rotation = right
+            size = 64, 256
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" "Load Contactor" {
+        }
+        [
+            position = 8768, 8240
+            rotation = right
+            size = 64, 256
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" "Grid Contactor" {
+        }
+        [
+            position = 9416, 8024
+            rotation = down
+            size = 64, 256
+        ]
+
+        component "core/Three Phase Constant Power Load" "Constant power load" {
+            Rsnb = "20e4"
+            ctrl_method = "Signal inputs"
+        }
+        [
+            position = 8012, 8608
+            size = 127, 256
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" "Battery Contactor" {
+        }
+        [
+            position = 8232, 8276
+            rotation = right
+            size = 64, 256
+        ]
+
+        component "core/Termination" Termination1 {
+            execution_rate = "Ts1"
+        }
+        [
+            position = 7804, 8704
+            rotation = down
+            hide_name = True
+        ]
+
+        component "core/Termination" Termination2 {
+            execution_rate = "Ts1"
+        }
+        [
+            position = 7864, 8680
+            rotation = down
+            hide_name = True
+        ]
+
+        component "core/SCADA Input" "Battery Q_ref" {
+            execution_rate = "Ts1"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7872, 8588
+        ]
+
+        component "core/Gain" Gain1 {
+            gain = "-1"
+        }
+        [
+            position = 7800, 8512
+        ]
+
+        component "core/Offset" Offset {
+            const_val = "-3.2"
+        }
+        [
+            position = 7868, 8512
+            size = 48, 48
+        ]
+
+        component "core/Probe" "PV AC Power" {
+            execution_rate = "Ts2"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7180, 8352
+            rotation = down
+        ]
+
+        component "core/Probe" "Load AC Power" {
+            execution_rate = "Ts2"
+            signal_access = "Inherit"
+        }
+        [
+            position = 8668, 8760
+        ]
+
+        component "core/Gain" Gain4 {
+            gain = "1000"
+        }
+        [
+            position = 8492, 8648
+            rotation = right
+            hide_name = True
+        ]
+
+        component "core/Gain" Gain5 {
+            gain = "1000"
+        }
+        [
+            position = 7304, 8352
+            rotation = down
+            hide_name = True
+        ]
+
+        component Subsystem "Real Digital Twin" {
+            layout = dynamic
+            component "core/C function" "C function2" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real P_Batt_charge_max;real P_Batt_discharge_max;real Pset_old;real dP;"
+                init_fnc = "/*Begin code section*/
+P_Batt_charge_max=2500;
+P_Batt_discharge_max=2300;
+Pset_old=Pdif;
+dP = 10000;
+/*End code section*/"
+                input_terminals = "real Pdif;"
+                input_terminals_dimensions = "inherit"
+                input_terminals_feedthrough = "True"
+                input_terminals_show_labels = "True"
+                output_fnc = "/*Begin code section*/
+Pset = Pdif;
+
+if (Pset > P_Batt_discharge_max) {
+    Pset = P_Batt_discharge_max;
+}
+
+if (Pset < -P_Batt_charge_max) {
+    Pset = -P_Batt_charge_max;
+}
+/*End code section*/"
+                output_terminals = "real Pset;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+            }
+            [
+                position = 7812, 7256
+                hide_name = True
+                size = 64, 56
+            ]
+
+            component "core/C function" "C function3" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                input_terminals = "real Pref_in_AC_Battery;"
+                input_terminals_dimensions = "inherit"
+                input_terminals_feedthrough = "True"
+                input_terminals_show_labels = "False"
+                output_fnc = "/*Begin code section*/
+if (Pref_in_AC_Battery > 0) {
+    Discharging = Pref_in_AC_Battery;
+    Charging = 0;
+} else if (Pref_in_AC_Battery < 0) {
+    Charging = Pref_in_AC_Battery;
+    Discharging = 0;
+} else {
+    Charging = 0;
+    Discharging=0;
+}
+/*End code section*/"
+                output_terminals = "real Discharging;inherit Charging;"
+                output_terminals_dimensions = "inherit;inherit"
+                output_terminals_feedthrough = "True;True"
+                output_terminals_show_labels = "True;True"
+            }
+            [
+                position = 7280, 8032
+                hide_name = True
+                size = 120, 96
+            ]
+
+            component "core/1D look-up table" Charging {
+                in_vec_x = "[0.05, 0.1, 0.2, 0.25, 0.3, 0.5, 0.75, 0.88,1.0]"
+                out_vec_f_x = "[0.890188, 0.932507, 0.94442, 0.941846, 0.940695, 0.928608, 0.905834, 0.89417, 0.89417]"
+                table_impl = "Non-equidistant"
+            }
+            [
+                position = 7780, 8168
+            ]
+
+            component "core/SCADA Input" "Rated Charging Power" {
+                def_value = "-2500"
+                execution_rate = "inherit"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 7500, 8208
+            ]
+
+            component "core/Product" Product2 {
+                signs = "*/"
+            }
+            [
+                position = 7636, 8168
+                hide_name = True
+            ]
+
+            component "core/Product" Product4 {
+                signs = "**"
+            }
+            [
+                position = 7916, 8152
+                hide_name = True
+            ]
+
+            component "core/Probe" "Actual DC Charge" {
+            }
+            [
+                position = 7872, 8064
+                scale = -1, 1
+            ]
+
+            component "core/1D look-up table" Discharging {
+                in_vec_x = "[0.05, 0.1, 0.2, 0.25, 0.3, 0.5, 0.75, 1.0]"
+                out_vec_f_x = "[0.581259, 0.730912, 0.853356, 0.881566, 0.899709, 0.924978, 0.937062, 0.940476]"
+                table_impl = "Non-equidistant"
+            }
+            [
+                position = 7840, 7904
+            ]
+
+            component "core/SCADA Input" "Rated discharging Power" {
+                def_value = "2300"
+                execution_rate = "inherit"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 7560, 7944
+            ]
+
+            component "core/Product" Product1 {
+                signs = "*/"
+            }
+            [
+                position = 7724, 7912
+                hide_name = True
+            ]
+
+            component "core/Product" Product3 {
+                signs = "*/"
+            }
+            [
+                position = 7952, 7888
+                hide_name = True
+            ]
+
+            component "core/C function" "C function4" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real Max_SOC_use;real Min_SOC_use;"
+                init_fnc = "/*Begin code section*/
+Max_SOC_use = Max_SOC;
+Min_SOC_use = Min_SOC;
+/*End code section*/"
+                input_terminals = "real Discharging;inherit Charging;inherit Pref_in_AC_Battery;inherit Battery_SOC;inherit Max_SOC;inherit Min_SOC;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True"
+                output_fnc = "/*Begin code section*/
+if (Pref_in_AC_Battery > 0) {
+    Actual_DC_Power = Discharging;
+} else if (Pref_in_AC_Battery < 0) {
+    Actual_DC_Power = Charging;
+} else if (Pref_in_AC_Battery == 0 && Battery_SOC <= Min_SOC_use) {
+    Actual_DC_Power = 0;
+} else if (Pref_in_AC_Battery == 0 && Battery_SOC > Min_SOC_use && Battery_SOC <= Max_SOC_use) {
+    Actual_DC_Power = 0;
+}else if (Pref_in_AC_Battery == 0 && Battery_SOC > Max_SOC_use) {
+    Actual_DC_Power = 0;
+}
+/*End code section*/"
+                output_terminals = "real Actual_DC_Power;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+            }
+            [
+                position = 8484, 8096
+                hide_name = True
+                size = 256, 280
+            ]
+
+            component "core/Product" Product5 {
+            }
+            [
+                position = 7812, 8904
+                hide_name = True
+            ]
+
+            component "core/SCADA Input" "Rated Energy Content  Wh" {
+                def_value = "5757"
+                execution_rate = "inherit"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 7644, 8960
+            ]
+
+            component "core/Gain" Gain2 {
+                gain = "0.01"
+            }
+            [
+                position = 7724, 8900
+                hide_name = True
+            ]
+
+            component "core/SCADA Input" "time chnage" {
+                def_value = "1/3600"
+                execution_rate = "inherit"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 7708, 8816
+                hide_name = True
+            ]
+
+            component "core/Product" Product6 {
+            }
+            [
+                position = 7916, 8808
+                hide_name = True
+            ]
+
+            component "core/C function" "C function5" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real Initial_energy_use;"
+                init_fnc = "/*Begin code section*/
+Initial_energy_use = Initial_Energy;
+/*End code section*/"
+                input_terminals = "real Initial_Energy;inherit Neu_Energy;inherit increase;"
+                input_terminals_dimensions = "inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True"
+                input_terminals_show_labels = "True;True;True"
+                output_fnc = "/*Begin code section*/
+Final_Energy = Initial_energy_use + (Neu_Energy * execution_rate * increase);
+Initial_energy_use = Final_Energy;
+/*End code section*/"
+                output_terminals = "real Final_Energy;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+            }
+            [
+                position = 8524, 8864
+                hide_name = True
+                scale = 1, -1
+                size = 160, 88
+            ]
+
+            component "core/Probe" "Neu Energy" {
+            }
+            [
+                position = 8084, 8680
+            ]
+
+            component "core/Gain" Gain3 {
+                gain = "-1"
+            }
+            [
+                position = 8132, 8840
+                hide_name = True
+            ]
+
+            component "core/Probe" Initial_Energy {
+            }
+            [
+                position = 8244, 9000
+            ]
+
+            component "core/Gain" Gain4 {
+                gain = "100"
+            }
+            [
+                position = 7948, 9056
+                hide_name = True
+            ]
+
+            component "core/Mathematical function" "Mathematical function1" {
+                mathematical_fn = "reciprocal"
+            }
+            [
+                position = 7784, 9048
+                hide_name = True
+            ]
+
+            component "core/Product" Product8 {
+            }
+            [
+                position = 7864, 9160
+                hide_name = True
+            ]
+
+            component "core/Probe" "Actual DC Discharge" {
+            }
+            [
+                position = 8456, 7888
+            ]
+
+            component "core/1D look-up table" "DC Voltage" {
+                in_vec_x = "[0.1,99.9]"
+                out_vec_f_x = "[48.1362,57.7467]"
+                table_impl = "Non-equidistant"
+            }
+            [
+                position = 8492, 8420
+            ]
+
+            component "core/C function" "SOC Checker" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real Initial_SOC_use;real Max_SOC_use;real Min_SOC_use;"
+                init_fnc = "/*Begin code section*/
+Initial_SOC_use = Initial_SOC;
+Max_SOC_use = Max_SOC;
+Min_SOC_use = Min_SOC;
+/*End code section*/"
+                input_terminals = "real Initial_SOC;inherit Max_SOC;inherit Min_SOC;"
+                input_terminals_dimensions = "inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True"
+                input_terminals_show_labels = "True;True;True"
+                output_fnc = "/*Begin code section*/
+if (Initial_SOC_use < Min_SOC) {
+    Final_SOC = Min_SOC;
+} else if (Initial_SOC_use >Max_SOC_use) {
+    Final_SOC = Max_SOC_use;
+} else {
+    Final_SOC = Initial_SOC_use;
+}
+/*End code section*/"
+                output_terminals = "real Final_SOC;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+            }
+            [
+                position = 7356, 8896
+                size = 152, 96
+            ]
+
+            component "core/1D look-up table" "DC Current" {
+                in_vec_x = "[2443.5797, 1845.0396, 1247.4965, 770.4913, 654.8168, 539.1288, 317.4468, 198.5780, 0.0000, -113.5190, -234.1012, -477.5707, -594.2389, -712.8972, -1170.5835, -1706.0840, -1962.4983, -2235.0000]"
+                out_vec_f_x = "[ 47.4176, 35.8005, 24.1787, 14.91485, 12.6767, 10.4370, 6.1403, 3.8392, 0, -2.1111, -4.3516, -8.8715, -11.0418, -13.2531, -21.7484, -31.7064, -36.6135, -41.8284 ]"
+                table_impl = "Non-equidistant"
+            }
+            [
+                position = 8492, 8532
+            ]
+
+            component "core/C function" "C function6" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real Max_SOC_use;real Min_SOC_use;"
+                init_fnc = "/*Begin code section*/
+Max_SOC_use = Max_SOC;
+Min_SOC_use = Min_SOC;
+/*End code section*/"
+                input_terminals = "real Pset;inherit Battery_SOC;inherit Max_SOC;inherit Min_SOC;"
+                input_terminals_dimensions = "inherit;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True"
+                output_fnc = "/*Begin code section*/
+if (Battery_SOC <= Min_SOC_use && Pset > 0) {
+    Battery_AC = 0;
+}
+else if (Battery_SOC <= Min_SOC_use && Pset < 0) {
+    Battery_AC = Pset;
+}
+else if (Battery_SOC >= Max_SOC_use && Pset < 0) {
+    Battery_AC = 0;
+}
+else if (Battery_SOC >= Max_SOC_use && Pset > 0) {
+    Battery_AC = Pset;
+}
+else if (Battery_SOC > Min_SOC_use && Battery_SOC < Max_SOC_use){
+    
+    if (Battery_SOC > Min_SOC_use && Battery_SOC < 2 && Pset > 2000) {
+        Battery_AC = Pset * 0.63;
+    } else if (Battery_SOC > 97 && Battery_SOC < 98 && Pset < -2000) {
+        Battery_AC = Pset * 0.57;
+    } else if (Battery_SOC > 98 && Battery_SOC < 99 && Pset < -2000) {
+        Battery_AC = Pset * 0.34;
+    } else if (Battery_SOC > 99 && Battery_SOC < Max_SOC_use && Pset < -2000) {
+        Battery_AC = Pset * 0.16;
+    } else if (Battery_SOC > 98 && Battery_SOC < 99 && Pset > -2000 && Pset < -1000) {
+        Battery_AC = Pset * 0.6031;
+    } else if (Battery_SOC > 99 && Battery_SOC < Max_SOC_use && Pset > -2000 && Pset < -1000) {
+        Battery_AC = Pset * 0.2777;
+    } else if (Battery_SOC > 99 && Battery_SOC < Max_SOC_use && Pset > -1000 && Pset < -1) {
+        Battery_AC = Pset * 0.411845;
+    } else {
+        Battery_AC = Pset;
+    }
+}
+/*End code section*/"
+                output_terminals = "real Battery_AC;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+            }
+            [
+                position = 8308, 7320
+                hide_name = True
+                size = 176, 152
+            ]
+
+            component "core/Probe" Pset {
+            }
+            [
+                position = 8092, 7184
+            ]
+
+            component "core/Unit Delay" "Unit Delay1" {
+                init_value = "1"
+            }
+            [
+                position = 8088, 7304
+                hide_name = True
+            ]
+
+            component "core/Probe" "Actual Initial SOC" {
+            }
+            [
+                position = 7584, 8816
+            ]
+
+            component "core/C function" "Battery Efficiency" {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                input_terminals = "real Neu_energy_before;"
+                input_terminals_dimensions = "inherit"
+                input_terminals_feedthrough = "True"
+                input_terminals_show_labels = "False"
+                output_fnc = "/*Begin code section*/
+if (Neu_energy_before > 0) {
+    Neu_energy_after = Neu_energy_before / 0.981013;
+}
+else if (Neu_energy_before <= 0) {
+    Neu_energy_after = Neu_energy_before ;
+}
+/*End code section*/"
+                output_terminals = "real Neu_energy_after;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "False"
+            }
+            [
+                position = 8020, 8840
+                size = 48, 48
+            ]
+
+            component "core/Probe" Pdif {
+            }
+            [
+                position = 7628, 7080
+            ]
+
+            component "core/Unit Delay" "Unit Delay2" {
+                init_value = "2"
+            }
+            [
+                position = 8260, 8120
+                hide_name = True
+            ]
+
+            port "Battery Pref" {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7520, 7256
+            ]
+
+            port "Battery AC P_ref" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8716, 7320
+            ]
+
+            port "Initial SOC" {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 6980, 8872
+            ]
+
+            port "Battery DC Voltage" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8836, 8420
+            ]
+
+            port "Battery DC Current" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8840, 8532
+            ]
+
+            port "Battery Energy" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8856, 8864
+            ]
+
+            port "Battery SOC" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8932, 9112
+            ]
+
+            port "Actual DC Power" {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8856, 8052
+            ]
+
+            port "Max SOC" {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7092, 7604
+            ]
+
+            port "Min SOC" {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 7084, 7692
+            ]
+
+            port "Rate of Increase" {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 6992, 8684
+            ]
+
+            tag Goto35 {
+                value = "Pref_in_AC_Battery"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8424, 7188
+                hide_name = True
+                scale = -1, 1
+                size = 116, 20
+            ]
+
+            tag Goto36 {
+                value = "Actual DC Power"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8876, 7928
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 116, 20
+            ]
+
+            tag From4 {
+                value = "Actual DC Power"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7704, 8768
+                hide_name = True
+                size = 140, 20
+            ]
+
+            tag Goto37 {
+                value = "Initial Energy"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8016, 8936
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag Goto39 {
+                value = "Battery Energy"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8812, 8740
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From5 {
+                value = "Battery Energy"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7656, 9200
+                hide_name = True
+                size = 124, 20
+            ]
+
+            tag Goto40 {
+                value = "Battery SOC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8100, 9160
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From10 {
+                value = "Battery SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8272, 8420
+                hide_name = True
+                size = 124, 20
+            ]
+
+            tag From11 {
+                value = "Actual DC Power"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8280, 8532
+                hide_name = True
+                size = 140, 20
+            ]
+
+            tag From12 {
+                value = "Battery SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7920, 7304
+                hide_name = True
+                size = 124, 20
+            ]
+
+            tag From14 {
+                value = "Pref_in_AC_Battery"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8192, 8072
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From15 {
+                value = "Battery SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8092, 8120
+                hide_name = True
+                size = 124, 20
+            ]
+
+            tag Goto41 {
+                value = "Max_SOC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7304, 7604
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 116, 20
+            ]
+
+            tag Goto42 {
+                value = "Min_SOC"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7300, 7692
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 116, 20
+            ]
+
+            tag From2 {
+                value = "Pref_in_AC_Battery"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7036, 8032
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From16 {
+                value = "Max_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7136, 8896
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From17 {
+                value = "Min_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7136, 8928
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From18 {
+                value = "Max_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8204, 8168
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From19 {
+                value = "Min_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8200, 8216
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From20 {
+                value = "Max_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8032, 7336
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag From21 {
+                value = "Min_SOC"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8032, 7368
+                hide_name = True
+                size = 116, 20
+            ]
+
+            tag Goto43 {
+                value = "Rate_of_Increase"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 7216, 8684
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 116, 20
+            ]
+
+            tag From22 {
+                value = "Rate_of_Increase"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8340, 8756
+                hide_name = True
+                size = 116, 20
+            ]
+
+            junction Junction318 sp
+            [
+                position = 8496, 7320
+            ]
+
+            junction Junction319 sp
+            [
+                position = 8680, 8864
+            ]
+
+            junction Junction322 sp
+            [
+                position = 7592, 7256
+            ]
+
+            junction Junction8 sp
+            [
+                position = 7664, 7896
+            ]
+
+            junction Junction14 sp
+            [
+                position = 7596, 8160
+            ]
+
+            junction Junction292 sp
+            [
+                position = 7852, 8904
+            ]
+
+            junction Junction294 sp
+            [
+                position = 8132, 8904
+            ]
+
+            junction Junction300 sp
+            [
+                position = 7728, 8960
+            ]
+
+            junction Junction311 sp
+            [
+                position = 8308, 7888
+            ]
+
+            junction Junction315 sp
+            [
+                position = 7956, 8808
+            ]
+
+            junction Junction316 sp
+            [
+                position = 8060, 7256
+            ]
+
+            junction Junction323 sp
+            [
+                position = 8724, 8052
+            ]
+
+            junction Junction324 sp
+            [
+                position = 7956, 8064
+            ]
+
+            junction Junction325 sp
+            [
+                position = 7980, 9056
+            ]
+
+            junction Junction326 sp
+            [
+                position = 7552, 8896
+            ]
+
+            comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Overall this fucntion defines the AC power of the</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> battery and also tell the battery when to go on Standby mode</p></body></html> ENDCOMMENT 
+            [
+                position = 8028, 7076
+            ]
+
+            comment Comment2 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">This fucntion here is a SOC Controller that only</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> makes battery run between min and max SOC.</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">It also try to replicate the charging and discharging behaviour</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> of Varta Pulsneo at different SOC ranges and Power values </p></body></html> ENDCOMMENT 
+            [
+                position = 8100, 7412
+            ]
+
+            comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">This function here find the DC Power of the battery based on the AC Power.</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> Here we include in discharging losses, charging losses and the Standby losses.</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Charging and discharging depends on the look up table that we found through battery guideline</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> testing and Standby losses are constant with a DC discharge value of 0.1 W.</p></body></html> ENDCOMMENT 
+            [
+                position = 7916, 7740
+            ]
+
+            comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Look up for discharging (DC to AC)</p></body></html> ENDCOMMENT 
+            [
+                position = 7688, 7968
+            ]
+
+            comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Look up for charging (AC to DC)</p></body></html> ENDCOMMENT 
+            [
+                position = 7676, 8248
+            ]
+
+            comment Comment7 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Function to decide whether the battery is</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> charging, discharging or on Standby mode</p></body></html> ENDCOMMENT 
+            [
+                position = 8328, 8268
+            ]
+
+            comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Find DC Voltage of battery based on the SOC of the battery</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p></body></html> ENDCOMMENT 
+            [
+                position = 8896, 8384
+            ]
+
+            comment Comment9 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Find DC Current based on the DC Power of the battery</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p></body></html> ENDCOMMENT 
+            [
+                position = 8908, 8484
+            ]
+
+            comment Comment10 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">This function helps in calculating the SOC of the battery</p></body></html> ENDCOMMENT 
+            [
+                position = 7624, 8604
+            ]
+
+            comment Comment12 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Input for DC Power</p></body></html> ENDCOMMENT 
+            [
+                position = 7640, 8712
+            ]
+
+            comment Comment11 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Checks that initial SOC should be </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">between min and max SOC</p></body></html> ENDCOMMENT 
+            [
+                position = 7284, 8988
+            ]
+
+            comment Comment15 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Based on the Battery Energy it calculates </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Battery SOC</p></body></html> ENDCOMMENT 
+            [
+                position = 7804, 9224
+            ]
+
+            comment Comment13 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Input for Change in energy</p></body></html> ENDCOMMENT 
+            [
+                position = 8184, 8788
+            ]
+
+            comment Comment14 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Input for Initial Energy </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">based on initial SOC</p></body></html> ENDCOMMENT 
+            [
+                position = 8216, 8920
+            ]
+
+            comment Comment16 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Fucntion to calculation change in Battery energy</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> in real time based on the initial energy and the</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> continous change in energy that is happening</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p></body></html> ENDCOMMENT 
+            [
+                position = 8452, 8928
+            ]
+
+            connect "C function6.Battery_AC" Junction318 as Connection3454
+            connect Junction318 Goto35 as Connection3455
+            connect "Battery AC P_ref" Junction318 as Connection3456
+            [
+                breakpoints = 8676, 7320; 8496, 7320
+            ]
+            connect Goto39 Junction319 as Connection3461
+            [
+                breakpoints = 8740, 8740; 8680, 8740
+            ]
+            connect Junction319 "C function5.Final_Energy" as Connection3462
+            connect "Battery Energy" Junction319 as Connection3463
+            connect "Battery Pref" Junction322 as Connection3472
+            connect Junction322 "C function2.Pdif" as Connection3473
+            connect Pdif.in Junction322 as Connection3474
+            connect "C function3.Pref_in_AC_Battery" From2 as Connection2943
+            connect "Rated Charging Power.out" Product2.in1 as Connection3163
+            connect Product2.out Charging.addr as Connection3165
+            connect Charging.value Product4.in1 as Connection3166
+            connect "Rated discharging Power.out" Product1.in1 as Connection3161
+            connect Product1.out Discharging.addr as Connection3164
+            connect Product3.in1 Discharging.value as Connection3173
+            connect Product3.in Junction8 as Connection3205
+            connect Junction8 Product1.in as Connection3206
+            connect "C function3.Discharging" Junction8 as Connection3207
+            [
+                breakpoints = 7372, 7896; 7520, 7896
+            ]
+            connect Product4.in Junction14 as Connection3219
+            [
+                breakpoints = 7876, 8136; 7820, 8136; 7820, 8136; 7596, 8136
+            ]
+            connect Junction14 Product2.in as Connection3220
+            connect "C function3.Charging" Junction14 as Connection3221
+            [
+                breakpoints = 7372, 8160; 7596, 8160; 7596, 8144; 7596, 8144
+            ]
+            connect Product5.in Gain2.out as Connection3236
+            connect Product6.in From4 as Connection3239
+            connect "time chnage.out" Product6.in1 as Connection3240
+            connect Goto37 Junction292 as Connection3255
+            connect Junction292 Product5.out as Connection3256
+            connect "C function5.Initial_Energy" Junction294 as Connection3264
+            [
+                breakpoints = 8408, 8904; 8220, 8904; 8220, 8904
+            ]
+            connect Junction294 Junction292 as Connection3265
+            [
+                breakpoints = 7852, 8904
+            ]
+            connect Initial_Energy.in Junction294 as Connection3266
+            connect "Rated Energy Content  Wh.out" Junction300 as Connection3299
+            connect Junction300 Product5.in1 as Connection3300
+            connect "Mathematical function1.in" Junction300 as Connection3301
+            connect "Mathematical function1.out" Product8.in as Connection3302
+            connect Product8.in1 From5 as Connection3303
+            connect Product8.out Gain4.in as Connection3304
+            connect From10 "DC Voltage.addr" as Connection3360
+            connect "C function4.Discharging" Junction311 as Connection3362
+            connect Junction311 "Actual DC Discharge.in" as Connection3363
+            connect Product3.out Junction311 as Connection3364
+            connect From11 "DC Current.addr" as Connection3372
+            connect From14 "C function4.Pref_in_AC_Battery" as Connection3386
+            connect From12 "Unit Delay1.in" as Connection3390
+            connect "Unit Delay1.out" "C function6.Battery_SOC" as Connection3391
+            connect "Neu Energy.in" Junction315 as Connection3396
+            [
+                breakpoints = 7964, 8680; 7964, 8808
+            ]
+            connect Junction315 Product6.out as Connection3397
+            connect "C function5.Neu_Energy" Gain3.out as Connection3418
+            connect Gain3.in "Battery Efficiency.Neu_energy_after" as Connection3425
+            connect "Battery Efficiency.Neu_energy_before" Junction315 as Connection3426
+            connect Pset.in Junction316 as Connection3428
+            connect Junction316 "C function6.Pset" as Connection3429
+            connect "C function2.Pset" Junction316 as Connection3430
+            connect From15 "Unit Delay2.in" as Connection3477
+            connect "Unit Delay2.out" "C function4.Battery_SOC" as Connection3478
+            connect "C function4.Actual_DC_Power" Junction323 as Connection3481
+            connect Junction323 "Actual DC Power" as Connection3482
+            connect Goto36 Junction323 as Connection3483
+            connect "Max SOC" Goto41 as Connection3488
+            connect "Min SOC" Goto42 as Connection3489
+            connect From16 "SOC Checker.Max_SOC" as Connection3490
+            connect From17 "SOC Checker.Min_SOC" as Connection3491
+            connect From18 "C function4.Max_SOC" as Connection3492
+            connect From19 "C function4.Min_SOC" as Connection3493
+            connect "Actual DC Charge.in" Junction324 as Connection3495
+            connect Junction324 Product4.out as Connection3496
+            connect "C function4.Charging" Junction324 as Connection3497
+            connect From20 "C function6.Max_SOC" as Connection3498
+            connect From21 "C function6.Min_SOC" as Connection3499
+            connect "Initial SOC" "SOC Checker.Initial_SOC" as Connection3500
+            connect Goto40 Junction325 as Connection3502
+            connect Junction325 Gain4.out as Connection3503
+            connect "Battery SOC" Junction325 as Connection3504
+            [
+                breakpoints = 8900, 9056; 7980, 9056
+            ]
+            connect "Rate of Increase" Goto43 as Connection3510
+            connect From22 "C function5.increase" as Connection3511
+            connect "DC Voltage.value" "Battery DC Voltage" as Connection3512
+            [
+                breakpoints = 8812, 8420
+            ]
+            connect "Battery DC Current" "DC Current.value" as Connection3513
+            connect "Actual Initial SOC.in" Junction326 as Connection3517
+            connect Junction326 Gain2.in as Connection3518
+            connect "SOC Checker.Final_SOC" Junction326 as Connection3519
+        }
+        [
+            position = 7660, 9208
+            size = 456, 312
+        ]
+
+        component "core/Probe" "Battery AC Power" {
+        }
+        [
+            position = 8524, 9088
+        ]
+
+        component "core/Probe" "Battery DC Current" {
+        }
+        [
+            position = 8292, 9232
+        ]
+
+        component "core/Probe" "Battery DC Voltage" {
+        }
+        [
+            position = 8368, 9184
+        ]
+
+        component "core/Probe" "Battery Energy" {
+        }
+        [
+            position = 8224, 9280
+        ]
+
+        component "core/Probe" "Battery SOC" {
+        }
+        [
+            position = 8156, 9328
+        ]
+
+        component "core/Probe" "Battery DC Power" {
+        }
+        [
+            position = 8448, 9136
+        ]
+
+        component "core/SCADA Input" "Initial SOC" {
+            def_value = "50"
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7336, 9336
+        ]
+
+        component "core/SCADA Input" "Min SOC" {
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7336, 9204
+        ]
+
+        component "core/SCADA Input" "Max SOC" {
+            def_value = "100"
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7340, 9132
+        ]
+
+        component "core/SCADA Input" "Rate of Increase" {
+            def_value = "900"
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7332, 9276
+        ]
+
+        component "core/Sum" Sum1 {
+        }
+        [
+            position = 6904, 9068
+            hide_name = True
+        ]
+
+        component "core/SCADA Input" "Battery Pref" {
+            def_value = "100"
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7048, 9100
+        ]
+
+        component "core/Signal switch" "Signal switch1" {
+        }
+        [
+            position = 7188, 9084
+            hide_name = True
+        ]
+
+        component "core/SCADA Input" "Control Mode" {
+            execution_rate = "inherit"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7236, 8840
+        ]
+
+        component "core/Probe" "Residual Load" {
+            execution_rate = "Ts2"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7020, 8852
+            rotation = down
+        ]
+
+        component "core/Gain" Gain7 {
+            gain = "1/1000"
+        }
+        [
+            position = 7116, 8904
+            rotation = left
+            hide_name = True
+        ]
+
+        component "core/Gain" Gain10 {
+            gain = "-1"
+        }
+        [
+            position = 6776, 9032
+            hide_name = True
+        ]
+
+        tag Goto33 {
+            value = "Power Generation"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8152, 7776
+            hide_name = True
+            scale = -1, 1
+            size = 92, 20
+        ]
+
+        tag Goto34 {
+            value = "Power GRID"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8728, 7776
+            hide_name = True
+            scale = -1, 1
+            size = 60, 20
+        ]
+
+        tag From15 {
+            value = "Pref_in_AC_Battery"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7684, 8512
+            hide_name = True
+            size = 116, 20
+        ]
+
+        tag Goto36 {
+            value = "PV AC Power"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7112, 8272
+            hide_name = True
+            scale = -1, 1
+            size = 100, 20
+        ]
+
+        tag Goto37 {
+            value = "Load AC Power"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8416, 8816
+            hide_name = True
+            scale = -1, 1
+            size = 100, 20
+        ]
+
+        tag Goto35 {
+            value = "Pref_in_AC_Battery"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 7928, 8908
+            hide_name = True
+            scale = -1, 1
+            size = 116, 20
+        ]
+
+        tag From16 {
+            value = "PV AC Power"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6612, 9032
+            hide_name = True
+            size = 156, 20
+        ]
+
+        tag From17 {
+            value = "Load AC Power"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6612, 9076
+            hide_name = True
+            size = 172, 20
+        ]
+
+        junction Junction287 pe
+        [
+            position = 8672, 7928
+        ]
+
+        junction Junction288 pe
+        [
+            position = 8768, 8024
+        ]
+
+        junction Junction317 pe
+        [
+            position = 8136, 7928
+        ]
+
+        junction Junction318 pe
+        [
+            position = 8232, 8024
+        ]
+
+        junction Junction319 pe
+        [
+            position = 8328, 8120
+        ]
+
+        junction Junction320 pe
+        [
+            position = 8864, 8120
+        ]
+
+        junction Junction321 sp
+        [
+            position = 7252, 8352
+        ]
+
+        junction Junction322 sp
+        [
+            position = 8492, 8760
+        ]
+
+        junction Junction1 sp
+        [
+            position = 8072, 9088
+        ]
+
+        junction Junction323 sp
+        [
+            position = 7116, 9068
+        ]
+
+        connect "PV Power Plant (Generic) UI1.ui_in" "PV Power Plant (Generic)1.ui_in" as Connection1
+        connect "PV Power Plant (Generic) UI1.ui_out" "PV Power Plant (Generic)1.ui_out" as Connection2
+        connect "PV Power Plant (Generic) UI1.ext" "PV Power Plant (Generic)1.ext_inputs" as Connection3
+        connect Goto33 "Meter Split Generation.POWER_P" as Connection2854
+        connect "Three-phase Meter Generation.Out" "Meter Split Generation.Input" as Connection2886
+        connect Goto34 "Meter Split GRID.POWER_P" as Connection2887
+        connect "Three-phase Meter GRID.Out" "Meter Split GRID.Input" as Connection2888
+        connect "Variable Load (Generic) UI1.ui_in" "Variable Load (Generic)1.Out1" as Connection2901
+        connect "Variable Load (Generic) UI1.ui_out" "Variable Load (Generic)1.In2" as Connection2902
+        connect "Variable Load (Generic) UI1.ext" "Variable Load (Generic)1.ext" as Connection2903
+        connect "Grid UI1.ui_in" Grid1.ui_in as Connection2916
+        connect "Grid UI1.ui_out" Grid1.ui_out as Connection2917
+        connect "Core Coupling 1.b_in" "Three-phase Meter Generation.B-" as Connection3050
+        connect "Core Coupling 1.c_in" "Three-phase Meter Generation.C-" as Connection3051
+        connect "Three-phase Meter GRID.C+" "Core Coupling 3.c_in" as Connection3097
+        connect "Three-phase Meter GRID.B+" "Core Coupling 3.b_in" as Connection3099
+        connect "Three-phase Meter GRID.A+" "Core Coupling 3.a_in" as Connection3101
+        connect "Core Coupling 2.b_in" "PV Contactor.b_in" as Connection3103
+        connect "PV Contactor.b_out" "PV Power Plant (Generic)1.B" as Connection3104
+        connect "PV Power Plant (Generic)1.C" "PV Contactor.a_out" as Connection3105
+        connect "PV Contactor.a_in" "Core Coupling 2.c_in" as Connection3106
+        connect "PV Power Plant (Generic)1.A" "PV Contactor.c_out" as Connection3107
+        connect "PV Contactor.c_in" "Core Coupling 2.a_in" as Connection3108
+        connect "Variable Load (Generic)1.A" "Load Contactor.c_out" as Connection3134
+        connect "Variable Load (Generic)1.B" "Load Contactor.b_out" as Connection3135
+        connect "Variable Load (Generic)1.C" "Load Contactor.a_out" as Connection3136
+        connect "Three-phase Meter GRID.A-" Junction287 as Connection3137
+        [
+            breakpoints = 8736, 7928
+        ]
+        connect "Load Contactor.c_in" Junction287 as Connection3139
+        connect "Three-phase Meter GRID.B-" Junction288 as Connection3140
+        connect Junction288 "Core Coupling 1.b_out" as Connection3141
+        [
+            breakpoints = 8768, 8024
+        ]
+        connect "Load Contactor.b_in" Junction288 as Connection3142
+        connect "Core Coupling 3.a_out" "Grid Contactor.c_out" as Connection3146
+        connect "Grid Contactor.c_in" Grid1.A as Connection3147
+        connect "Core Coupling 3.b_out" "Grid Contactor.b_out" as Connection3148
+        connect "Grid Contactor.b_in" Grid1.B as Connection3149
+        connect "Core Coupling 3.c_out" "Grid Contactor.a_out" as Connection3150
+        connect "Grid Contactor.a_in" Grid1.C as Connection3151
+        connect "Three-phase Meter Generation.A+" Junction317 as Connection3434
+        connect Junction317 "Core Coupling 2.a_out" as Connection3435
+        [
+            breakpoints = 8072, 7928
+        ]
+        connect "Battery Contactor.c_in" Junction317 as Connection3436
+        connect "Core Coupling 2.b_out" Junction318 as Connection3437
+        [
+            breakpoints = 8104, 8024
+        ]
+        connect "Battery Contactor.b_in" Junction318 as Connection3439
+        connect Termination1.in "Constant power load.locked" as Connection3443
+        connect Termination2.in "Constant power load.frequency" as Connection3444
+        connect "Battery Q_ref.out" "Constant power load.Qin" as Connection3445
+        connect Junction318 "Three-phase Meter Generation.B+" as Connection3488
+        connect "Core Coupling 2.c_out" Junction319 as Connection3489
+        [
+            breakpoints = 8136, 8120
+        ]
+        connect Junction319 "Three-phase Meter Generation.C+" as Connection3490
+        connect "Battery Contactor.a_in" Junction319 as Connection3491
+        connect "Constant power load.a_node" "Battery Contactor.c_out" as Connection3492
+        connect "Battery Contactor.b_out" "Constant power load.b_node" as Connection3493
+        connect "Constant power load.c_node" "Battery Contactor.a_out" as Connection3494
+        connect Gain1.out Offset.in as Connection3496
+        connect From15 Gain1.in as Connection3497
+        connect Offset.out "Constant power load.Pin" as Connection3498
+        connect "Three-phase Meter GRID.C-" Junction320 as Connection3503
+        connect Junction320 "Core Coupling 1.c_out" as Connection3504
+        [
+            breakpoints = 8800, 8120
+        ]
+        connect "Load Contactor.a_in" Junction320 as Connection3505
+        connect "PV AC Power.in" Junction321 as Connection3513
+        connect Goto36 Junction321 as Connection3515
+        [
+            breakpoints = 7248, 8272; 7248, 8352
+        ]
+        connect "Load AC Power.in" Junction322 as Connection3516
+        connect Goto37 Junction322 as Connection3518
+        connect Junction322 Gain4.out as Connection3531
+        connect Gain4.in "Variable Load (Generic) UI1.Load AC Power" as Connection3532
+        connect Junction321 Gain5.out as Connection3533
+        connect Gain5.in "PV Power Plant (Generic) UI1.PV AC Power" as Connection3534
+        connect "Battery DC Power.in" "Real Digital Twin.Actual DC Power" as Connection3506
+        connect "Battery DC Voltage.in" "Real Digital Twin.Battery DC Voltage" as Connection3507
+        [
+            breakpoints = 8336, 9184; 7900, 9184
+        ]
+        connect "Battery DC Current.in" "Real Digital Twin.Battery DC Current" as Connection4
+        connect "Battery Energy.in" "Real Digital Twin.Battery Energy" as Connection5
+        connect "Battery SOC.in" "Real Digital Twin.Battery SOC" as Connection6
+        connect "Real Digital Twin.Battery AC P_ref" Junction1 as Connection7
+        connect Junction1 "Battery AC Power.in" as Connection8
+        connect Goto35 Junction1 as Connection9
+        connect "Initial SOC.out" "Real Digital Twin.Initial SOC" as Connection11
+        connect "Max SOC.out" "Real Digital Twin.Max SOC" as Connection3509
+        connect "Min SOC.out" "Real Digital Twin.Min SOC" as Connection3510
+        connect "Rate of Increase.out" "Real Digital Twin.Rate of Increase" as Connection3511
+        connect "Signal switch1.in1" "Battery Pref.out" as Connection3539
+        connect "Control Mode.out" "Signal switch1.in2" as Connection3541
+        connect "Signal switch1.in" Junction323 as Connection3543
+        connect Junction323 Sum1.out as Connection3544
+        connect "Residual Load.in" Gain7.out as Connection3545
+        connect Gain7.in Junction323 as Connection3546
+        connect "Variable Load (Generic)1.N" "Three-phase Meter GRID.GND" as Connection3554
+        [
+            breakpoints = 8832, 8372; 9008, 8372
+        ]
+        connect "Signal switch1.out" "Real Digital Twin.Battery Pref" as Connection3562
+        connect Junction287 "Core Coupling 1.a_out" as Connection3569
+        connect "Three-phase Meter Generation.A-" "Core Coupling 1.a_in" as Connection3570
+        connect From16 Gain10.in as Connection3573
+        connect Gain10.out Sum1.in as Connection3574
+        connect From17 Sum1.in1 as Connection3575
+    }
+
+    default {
+        "core/1D look-up table" {
+            in_vec_x = "np.arange(-5,6)"
+            out_vec_f_x = "np.arange(-5,6)**2"
+            table_impl = "Equidistant"
+            ext_mode = "Clip"
+            execution_rate = "inherit"
+        }
+
+        "core/Bus Join" {
+            inputs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Bus Split" {
+            outputs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/C function" {
+            input_terminals = "real in;"
+            input_terminals_show_labels = "False;"
+            input_terminals_feedthrough = "True;"
+            input_terminals_dimensions = "inherit;"
+            output_terminals = "real out;"
+            output_terminals_show_labels = "False;"
+            output_terminals_feedthrough = "True;"
+            output_terminals_dimensions = "inherit;"
+            output_fnc = ""
+            update_fnc = ""
+            init_fnc = ""
+            global_variables = ""
+            parameters = ""
+            library_load_type = "Compile-time load"
+            dll_file_path = ""
+            dll_file_path_full = ""
+            arm_a9_file_path = ""
+            arm_a9_file_path_full = ""
+            arm_a53_file_path = ""
+            arm_a53_file_path_full = ""
+            h_file_path = ""
+            h_file_path_full = ""
+            add_src_path = ""
+            add_src_path_full = ""
+            convert_to_relative_dll = "True"
+            convert_to_relative_a = "True"
+            convert_to_relative_src = "True"
+            arb_defs = ""
+            add_macros = ""
+            skip_pre_cmpl_check = "False"
+            generate_for_hil = "True"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'generic\']"
+            refresh = "refresh"
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Mathematical function" {
+            mathematical_fn = "exponential"
+            execution_rate = "inherit"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/SCADA Input" {
+            signal_access = "inherit"
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/Signal switch" {
+            criterion = "ctrl > threshold"
+            threshold = "0.5"
+            execution_rate = "inherit"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Termination" {
+            execution_rate = "inherit"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/DER (Generic) Control Join" {
+            component_select = "Battery ESS"
+            Enable = "False"
+            Converter_mode = "False"
+            Reset_alarms = "False"
+            Pref = "False"
+            Qref = "False"
+            Frequency_droop_offset = "False"
+            Frequency_droop_coeff = "False"
+            Voltage_droop_offset = "False"
+            Voltage_droop_coeff = "False"
+            Vrms_ref = "False"
+            Fref = "False"
+            Max_SOC = "False"
+            Min_SOC = "False"
+            Pref_rate_of_change = "False"
+            Qref_rate_of_change = "False"
+            Vrms_ref_rate_of_change = "False"
+            Fref_rate_of_change = "False"
+            Pcurtailment = "False"
+            Pcurtailment_rate_of_change = "False"
+            MPPT_rate_of_change = "False"
+            Enable_storm_control = "False"
+            int1_wind_speed_max = "False"
+            int2_wind_speed_max = "False"
+            P_reduction_wind_speed__SC_ = "False"
+            Average_wind_speed_max__SC_ = "False"
+            Cut_out_wind_speed__SC_ = "False"
+            time_interval_1 = "False"
+            time_interval_2 = "False"
+            Recovery_time = "False"
+            time_interval__SC_ = "False"
+            Operation_mode = "False"
+            P_dependency_type = "False"
+            Q_dependency_type = "False"
+            P_V_k1 = "False"
+            P_V_k2 = "False"
+            P_f_k1 = "False"
+            P_f_k2 = "False"
+            Q_V_k1 = "False"
+            Q_V_k2 = "False"
+            Q_f_k1 = "False"
+            Q_f_k2 = "False"
+            LVRT_enable = "False"
+            LVRT_Q_contribution = "False"
+            LVRT_P_set = "False"
+            V_alarm_upper_limit = "False"
+            V_alarm_lower_limit = "False"
+            F_alarm_upper_limit = "False"
+            F_alarm_lower_limit = "False"
+            S_alarm_upper_limit = "False"
+            I_alarm_upper_limit = "False"
+            I_alarm_timeout = "False"
+            Drift_alarm_freq_bound = "False"
+            Sync_timeout = "False"
+            VoltVAr_enable = "False"
+            HzWatt_enable = "False"
+            VoltWatt_enable = "False"
+        }
+
+        "core/DER (Generic) External Join" {
+            component_select = "Battery ESS"
+            Initial_SOC = "False"
+            Initial_SOH = "False"
+            Temperature = "False"
+            Irradiance = "False"
+            Wind_speed = "False"
+        }
+
+        "core/DER (Generic) Output Split" {
+            component_select = "Battery ESS"
+            Enable_fb = "False"
+            Converter_mode_fb = "False"
+            MCB_status = "False"
+            state = "False"
+            alarm_msg = "False"
+            Lvrt_active_status = "False"
+            Pnom_kW = "False"
+            Qnom_kVAr = "False"
+            Snom_kVA = "False"
+            Vnom_LL_V = "False"
+            Fnom_Hz = "False"
+            nom_wind_speed_m_per_s = "False"
+            Pref_fb_kW = "False"
+            Qref_fb_kVAr = "False"
+            Vrms_ref_fb_V = "False"
+            Fref_fb_Hz = "False"
+            Pmeas_kW = "False"
+            Pa_meas_kW = "False"
+            Pb_meas_kW = "False"
+            Pc_meas_kW = "False"
+            Qmeas_kVAr = "False"
+            Qa_meas_kVAr = "False"
+            Qb_meas_kVAr = "False"
+            Qc_meas_kVAr = "False"
+            Smeas_kVA = "False"
+            PFmeas = "False"
+            Vgrid_rms_meas_kV = "False"
+            Vconv_rms_meas_V = "False"
+            Fmeas_Hz = "False"
+            Ibatt_A = "False"
+            Vbatt_V = "False"
+            Vdc_V = "False"
+            Idc_A = "False"
+            SOC = "False"
+            SOH = "False"
+            Available_Ppv_kW = "False"
+            curtailment_status = "False"
+            rotational_speed_RPM = "False"
+            wind_speed_m_per_s = "False"
+            turbine_stalled = "False"
+            pitch_ctrl_on = "False"
+            avg_wind_speed_1 = "False"
+            avg_wind_speed_2 = "False"
+            avg_wind_speed_sc = "False"
+            prot_trip = "False"
+            P_red_on = "False"
+            P_cut_out = "False"
+            Vgen_rms_meas_V = "False"
+            Gen_speed_RPM = "False"
+            Batt_cap_nom_Ah = "False"
+            Vload_rms_meas_V = "False"
+        }
+
+        "core/Grid" {
+            Vb = "2300"
+            f = "50"
+            Sb = "20*40e3"
+            pf = "0.1"
+            Tfast = "100e-6"
+            cont_type = "Ideal"
+            resistance_cont = "0"
+        }
+
+        "core/Meter Split" {
+            van = "True"
+            vbn = "True"
+            vcn = "True"
+            van_rms = "False"
+            vbn_rms = "False"
+            vcn_rms = "False"
+            vln_rms = "False"
+            vn = "False"
+            vn_rms = "False"
+            vab = "False"
+            vbc = "False"
+            vca = "False"
+            vab_rms = "False"
+            vbc_rms = "False"
+            vca_rms = "False"
+            vll_rms = "False"
+            ia = "False"
+            ib = "False"
+            ic = "False"
+            ia_rms = "False"
+            ib_rms = "False"
+            ic_rms = "False"
+            i_rms = "False"
+            ineutral = "False"
+            in_rms = "False"
+            freq = "False"
+            power_p = "False"
+            power_q = "False"
+            power_s = "False"
+            power_pf = "False"
+            enable_extra_in = "No"
+            power_pa = "False"
+            power_pb = "False"
+            power_pc = "False"
+            power_qa = "False"
+            power_qb = "False"
+            power_qc = "False"
+            power_sa = "False"
+            power_sb = "False"
+            power_sc = "False"
+            power_pfa = "False"
+            power_pfb = "False"
+            power_pfc = "False"
+        }
+
+        "core/Offset" {
+            const_val = "0"
+            const_val_type = "real"
+            execution_rate = "inherit"
+        }
+
+        "core/PV Power Plant (Generic)" {
+            Pnom = "250e3"
+            Snom = "np.sqrt(2.0)*250e3"
+            Vnom_LL = "400"
+            fnom = "50"
+            include_transformer = "True"
+            Vnom_sec_LL = "13.8e3"
+            ILR_factor = "1.2"
+            wL_pu = "0.1"
+            Zt_pu = "0.04"
+            dc_link_margin = "0.4"
+            opc_pu = "0.0"
+            Rshunt_pu = "2000"
+            Tfast = "100e-6"
+            Tslow = "500e-6"
+            Sg_sc_pu = "20"
+            PFg = "0.1"
+            cont_type = "Ideal"
+            resistance_cont = "1.0"
+            grid_code_fcn = "LVRT"
+            lvrt_req = "Germany"
+            vs_lvrt = "[0.0, 0.9, 0.901]"
+            ts_lvrt = "[0.15, 1.5, 1.501]"
+            preview = "Plot LVRT curve"
+            voltvar_req = "Custom"
+            vs_voltvar = "[0.6, 0.9, 1.1, 1.3]"
+            qs_voltvar = "[1.3, 0.0, 0.0, -0.7]"
+            preview_voltvar = "Plot VoltVAr curve"
+            hzwatt_req = "Custom"
+            fs_hzwatt = "[47.5, 47.8, 49.8, 50.2, 51.5]"
+            ps_hzwatt = "[2.0, 2.0, 0.0, 0.0, -0.52]"
+            preview_hzwatt = "Plot HzWatt curve"
+            voltwatt_req = "Custom"
+            vs_voltwatt = "[0.8, 1.06, 1.1, 1.3]"
+            ps_voltwatt = "[1.0, 1.0, 0.2, 0.2]"
+            preview_voltwatt = "Plot VoltWatt curve"
+        }
+
+        "core/Three Phase Constant Power Load" {
+            I_limit = "100"
+            ctrl_method = "SCADA inputs"
+            execution_rate = "inherit"
+            pin_to_system_cpu = "True"
+            Tfast = "100e-6"
+            Tslow = "200e-6"
+            v_droop_enb = "False"
+            v_droop = "[80.0,2.0, 100.0,1.0, 120.0,0.5]"
+            preview_v_droop = "Preview"
+            f_droop_enb = "False"
+            f_droop = "[47.5,1.0, 50.2,1.0, 52.7,0.0]"
+            preview_f_droop = "Preview"
+            Rsnb = "20e3"
+        }
+
+        "core/Three Phase TLM Core Coupling" {
+            type = "Inductive"
+            capacitance = "1e-3"
+            inductance = "1e-3"
+            embedded_components = "False"
+            ratio_type = "Automatic"
+            ratio = "0.1"
+            cpl_connection = "3 CPLs, Star Connection"
+        }
+
+        "core/Three-phase Meter" {
+            R = "1e5"
+            n_cycles = "1"
+            Ts = "100e-6"
+            enable_probes = "True"
+            enable_out = "True"
+            remove_snubber = "False"
+            enable_bandwidth = "False"
+            bandwidth = "10e3"
+            VAn = "True"
+            VBn = "True"
+            VCn = "True"
+            VAB = "False"
+            VBC = "False"
+            VCA = "False"
+            VN = "False"
+            IA = "True"
+            IB = "True"
+            IC = "True"
+            IN = "False"
+            freq = "False"
+            VLn_rms = "False"
+            VLL_rms = "False"
+            VLn_avg_rms = "False"
+            VLL_avg_rms = "False"
+            VN_rms = "False"
+            I_rms = "False"
+            I_avg_rms = "False"
+            IN_rms = "False"
+            P_method = "alpha-beta"
+            enable_extra_out = "False"
+            P_meas = "False"
+        }
+
+        "core/Triple Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+        }
+
+        "core/Variable Load (Generic)" {
+            Pnom = "10e3"
+            Snom = "np.sqrt(2)*10e3"
+            Vnom_LL = "400"
+            fnom = "50"
+            include_transformer = "False"
+            Vnom_sec_LL = "400"
+            wL_pu = "0.1"
+            Zt_pu = "0.04"
+            dc_link_margin = "0.4"
+            opc_pu = "0.2"
+            Rshunt_pu = "2000"
+            Sg_sc_pu = "20"
+            PFg = "0.1"
+            cont_type = "Ideal"
+            resistance_cont = "0"
+            Tfast = "100e-6"
+            Tslow = "500e-6"
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        #faster execution rate
+        #Ts1 = 200e-6
+        
+        Ts1 = 100e-6
+        
+        #slower execution rate
+        #Ts2 = 1000e-6
+        
+        Ts2 = 300e-6
+        
+        #PV plant
+        # nominal power
+        Ppv = 10e3
+    ENDCODE
+}
