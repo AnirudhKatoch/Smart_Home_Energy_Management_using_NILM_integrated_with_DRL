@@ -1,0 +1,108 @@
+2024-09-27 17:08:31,417 - logger_a_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Actual/Real/logger.log
+2024-09-27 17:08:31,417 - Load_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-27 17:08:31,417 - PV_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-27 17:08:31,418 - Time_stamp: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-27 17:08:31,418 - model_path: docs/Typhoon/Faster/faster_Hybrid-inverter_VARTAPulseneo_Digital_twin_Real.tse
+2024-09-27 17:08:31,418 - res_folder_path: NILM_and_DRL_based_EMS/DESO/res_files/Load_Profile_2/Actual/
+2024-09-27 17:08:31,418 - res_file_name: Day_
+2024-09-27 17:08:31,419 - Initial_battery_SOC: 50
+2024-09-27 17:08:31,419 - Control_Mode: 1
+2024-09-27 17:08:31,419 - Max_SOC: 100
+2024-09-27 17:08:31,419 - Min_SOC: 0
+2024-09-27 17:08:31,419 - capture_rate: 900
+2024-09-27 17:08:31,420 - Folder_name: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Actual/Real/
+2024-09-27 17:08:31,420 - Column_Load: Load_actual_kW
+2024-09-27 17:08:31,420 - Column_PV: PV_Irradiance
+2024-09-27 17:08:31,420 - Column_Time_stamp: Time_unix
+2024-09-27 17:08:31,420 - Loop_step_time: 0.9797708333333333
+2024-09-27 17:08:41,582 - HIL402 2 device is used
+2024-09-27 17:09:50,559 - Simulation of the model has started.
+2024-09-27 17:10:43,787 - Length of res dictionary 365
+2024-09-27 17:10:43,787 - Test : Without_DESO
+2024-09-27 17:10:43,787 - test_time : 35040
+2024-09-27 17:10:43,787 - It will take approximately 35040 seconds for the test Without_DESO to finish
+2024-09-27 17:10:45,812 - Capture has started
+2024-09-27 17:10:45,828 - Actual testing has started
+2024-09-28 02:54:53,789 - Loop Ended
+2024-09-28 02:56:55,087 - Test has finished
+2024-09-28 02:56:55,095 - logger_b_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Optimized_Predicted/Real/logger.log
+2024-09-28 02:56:55,096 - Load_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 02:56:55,096 - PV_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 02:56:55,096 - Time_stamp: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 02:56:55,097 - model_path: docs/Typhoon/Faster/faster_Hybrid-inverter_VARTAPulseneo_Digital_twin_Real.tse
+2024-09-28 02:56:55,097 - res_folder_path: NILM_and_DRL_based_EMS/DESO/res_files/Load_Profile_2/Optimized_Predicted/
+2024-09-28 02:56:55,098 - res_file_name: Day_
+2024-09-28 02:56:55,098 - Initial_battery_SOC: 50
+2024-09-28 02:56:55,098 - Control_Mode: 1
+2024-09-28 02:56:55,100 - Max_SOC: 100
+2024-09-28 02:56:55,100 - Min_SOC: 0
+2024-09-28 02:56:55,100 - capture_rate: 900
+2024-09-28 02:56:55,100 - Folder_name: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Optimized_Predicted/Real/
+2024-09-28 02:56:55,101 - Column_Load: Load_Optimized_predicted_kW
+2024-09-28 02:56:55,101 - Column_PV: PV_Irradiance
+2024-09-28 02:56:55,101 - Column_Time_stamp: Time_unix
+2024-09-28 02:56:55,102 - Loop_step_time: 0.9797708333333333
+2024-09-28 02:57:05,468 - HIL402 2 device is used
+2024-09-28 02:58:11,847 - Simulation of the model has started.
+2024-09-28 02:59:05,642 - Length of res dictionary 365
+2024-09-28 02:59:05,645 - Test : Without_DESO
+2024-09-28 02:59:05,645 - test_time : 35040
+2024-09-28 02:59:05,645 - It will take approximately 35040 seconds for the test Without_DESO to finish
+2024-09-28 02:59:07,665 - Capture has started
+2024-09-28 02:59:07,733 - Actual testing has started
+2024-09-28 12:43:19,431 - Loop Ended
+2024-09-28 12:45:16,725 - Test has finished
+2024-09-28 12:45:16,727 - logger_c_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Actual/Ideal/logger.log
+2024-09-28 12:45:16,728 - Load_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 12:45:16,728 - PV_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 12:45:16,729 - Time_stamp: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 12:45:16,729 - model_path: docs/Typhoon/Faster/faster_Hybrid-inverter_VARTAPulseneo_Digital_twin_Ideal.tse
+2024-09-28 12:45:16,730 - res_folder_path: NILM_and_DRL_based_EMS/DESO/res_files/Load_Profile_2/Actual/
+2024-09-28 12:45:16,730 - res_file_name: Day_
+2024-09-28 12:45:16,731 - Initial_battery_SOC: 50
+2024-09-28 12:45:16,731 - Control_Mode: 1
+2024-09-28 12:45:16,733 - Max_SOC: 100
+2024-09-28 12:45:16,733 - Min_SOC: 0
+2024-09-28 12:45:16,733 - capture_rate: 900
+2024-09-28 12:45:16,734 - Folder_name: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Actual/Ideal/
+2024-09-28 12:45:16,734 - Column_Load: Load_actual_kW
+2024-09-28 12:45:16,734 - Column_PV: PV_Irradiance
+2024-09-28 12:45:16,735 - Column_Time_stamp: Time_unix
+2024-09-28 12:45:16,735 - Loop_step_time: 0.9797708333333333
+2024-09-28 12:45:31,741 - HIL402 2 device is used
+2024-09-28 12:46:39,205 - Simulation of the model has started.
+2024-09-28 12:47:30,717 - Length of res dictionary 365
+2024-09-28 12:47:30,719 - Test : Without_DESO
+2024-09-28 12:47:30,720 - test_time : 35040
+2024-09-28 12:47:30,720 - It will take approximately 35040 seconds for the test Without_DESO to finish
+2024-09-28 12:47:32,739 - Capture has started
+2024-09-28 12:47:32,801 - Actual testing has started
+2024-09-28 22:31:55,887 - Loop Ended
+2024-09-28 22:33:41,842 - Test has finished
+2024-09-28 22:33:41,845 - logger_d_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Optimized_Predicted/Ideal/logger.log
+2024-09-28 22:33:41,845 - Load_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 22:33:41,847 - PV_path: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 22:33:41,848 - Time_stamp: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/Mother_function_inputs/Mother_function_inputs_data.csv
+2024-09-28 22:33:41,848 - model_path: docs/Typhoon/Faster/faster_Hybrid-inverter_VARTAPulseneo_Digital_twin_Ideal.tse
+2024-09-28 22:33:41,849 - res_folder_path: NILM_and_DRL_based_EMS/DESO/res_files/Load_Profile_2/Optimized_Predicted/
+2024-09-28 22:33:41,850 - res_file_name: Day_
+2024-09-28 22:33:41,850 - Initial_battery_SOC: 50
+2024-09-28 22:33:41,851 - Control_Mode: 1
+2024-09-28 22:33:41,851 - Max_SOC: 100
+2024-09-28 22:33:41,852 - Min_SOC: 0
+2024-09-28 22:33:41,852 - capture_rate: 900
+2024-09-28 22:33:41,853 - Folder_name: NILM_and_DRL_based_EMS/DESO/SIL_Simulations/SIL_Results/Optimized_Predicted/Ideal/
+2024-09-28 22:33:41,853 - Column_Load: Load_Optimized_predicted_kW
+2024-09-28 22:33:41,854 - Column_PV: PV_Irradiance
+2024-09-28 22:33:41,854 - Column_Time_stamp: Time_unix
+2024-09-28 22:33:41,855 - Loop_step_time: 0.9797708333333333
+2024-09-28 22:33:52,083 - HIL402 2 device is used
+2024-09-28 22:35:06,211 - Simulation of the model has started.
+2024-09-28 22:35:57,813 - Length of res dictionary 365
+2024-09-28 22:35:57,887 - Test : Without_DESO
+2024-09-28 22:35:57,888 - test_time : 35040
+2024-09-28 22:35:57,889 - It will take approximately 35040 seconds for the test Without_DESO to finish
+2024-09-28 22:35:59,919 - Capture has started
+2024-09-28 22:36:00,000 - Actual testing has started
+2024-09-29 08:20:28,265 - Loop Ended
+2024-09-29 08:22:11,035 - Test has finished
