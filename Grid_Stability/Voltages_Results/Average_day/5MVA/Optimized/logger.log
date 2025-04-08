@@ -1,0 +1,41 @@
+2024-12-02 11:24:00,845 - logger_b_path: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/logger.log
+2024-12-02 11:24:00,846 - Load_path: Grid_Stability/Database/5MVA/Residual_load.csv
+2024-12-02 11:24:00,846 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-12-02 11:24:00,847 - capture_rate: 900
+2024-12-02 11:24:00,847 - Folder_name: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/
+2024-12-02 11:24:00,849 - Column_Load: Residual_Optimized
+2024-12-02 11:24:00,849 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:24:03,057 - HIL402 2 device is used
+2024-12-02 11:24:28,299 - Simulation of the model has started.
+2024-12-02 11:28:05,013 - logger_b_path: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/logger.log
+2024-12-02 11:28:05,014 - Load_path: Grid_Stability/Database/Average_day/5MVA/Residual_load.csv
+2024-12-02 11:28:05,014 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-12-02 11:28:05,014 - capture_rate: 900
+2024-12-02 11:28:05,014 - Folder_name: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/
+2024-12-02 11:28:05,015 - Column_Load: Residual_Optimized
+2024-12-02 11:28:05,015 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:28:09,502 - HIL402 2 device is used
+2024-12-02 11:28:32,938 - Simulation of the model has started.
+2024-12-02 11:28:32,940 - Test : Grid_Stability
+2024-12-02 11:28:32,941 - test_time : 96
+2024-12-02 11:28:32,941 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-02 11:28:34,961 - Capture has started
+2024-12-02 11:28:34,976 - Actual testing has started
+2024-12-02 11:30:10,970 - Loop Ended
+2024-12-02 11:30:12,709 - Test has finished
+2024-12-05 11:12:01,066 - logger_b_path: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/logger.log
+2024-12-05 11:12:01,067 - Load_path: Grid_Stability/Database/Average_day/5MVA/Residual_load.csv
+2024-12-05 11:12:01,067 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-12-05 11:12:01,067 - capture_rate: 900
+2024-12-05 11:12:01,067 - Folder_name: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/
+2024-12-05 11:12:01,068 - Column_Load: Residual_Optimized
+2024-12-05 11:12:01,068 - Loop_step_time: 0.9800208333333332
+2024-12-05 11:12:03,303 - HIL402 2 device is used
+2024-12-05 11:12:30,019 - Simulation of the model has started.
+2024-12-05 11:12:30,022 - Test : Grid_Stability
+2024-12-05 11:12:30,022 - test_time : 96
+2024-12-05 11:12:30,022 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-05 11:12:32,042 - Capture has started
+2024-12-05 11:12:32,057 - Actual testing has started
+2024-12-05 11:14:08,011 - Loop Ended
+2024-12-05 11:14:09,707 - Test has finished

@@ -1,0 +1,40 @@
+2024-11-29 16:20:22,459 - logger_a_path: Grid_Stability/Voltages_Results/5MVA/Actual/Spring/logger.log
+2024-11-29 16:20:22,459 - Load_path: Grid_Stability/Database/5MVA/Spring/Residual_load.csv
+2024-11-29 16:20:22,459 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:20:22,460 - capture_rate: 900
+2024-11-29 16:20:22,460 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Actual/Spring/
+2024-11-29 16:20:22,460 - Column_Load: Residual_Actual
+2024-11-29 16:20:22,460 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:20:24,761 - HIL402 2 device is used
+2024-11-29 16:25:59,674 - logger_a_path: Grid_Stability/Voltages_Results/5MVA/Actual/Spring/logger.log
+2024-11-29 16:25:59,674 - Load_path: Grid_Stability/Database/5MVA/Spring/Residual_load.csv
+2024-11-29 16:25:59,675 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:25:59,675 - capture_rate: 900
+2024-11-29 16:25:59,675 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Actual/Spring/
+2024-11-29 16:25:59,675 - Column_Load: Residual_Actual
+2024-11-29 16:25:59,675 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:26:01,864 - HIL402 2 device is used
+2024-11-29 16:26:26,217 - Simulation of the model has started.
+2024-11-29 16:26:26,221 - Test : Grid_Stability
+2024-11-29 16:26:26,221 - test_time : 96
+2024-11-29 16:26:26,221 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:26:28,242 - Capture has started
+2024-11-29 16:26:28,258 - Actual testing has started
+2024-11-29 16:28:04,304 - Loop Ended
+2024-11-29 16:28:06,005 - Test has finished
+2024-11-29 16:28:06,007 - logger_b_path: Grid_Stability/Voltages_Results/5MVA/Optimized/Spring/logger.log
+2024-11-29 16:28:06,007 - Load_path: Grid_Stability/Database/5MVA/Spring/Residual_load.csv
+2024-11-29 16:28:06,007 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:28:06,008 - capture_rate: 900
+2024-11-29 16:28:06,008 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Optimized/Spring/
+2024-11-29 16:28:06,008 - Column_Load: Residual_Optimized
+2024-11-29 16:28:06,009 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:28:08,191 - HIL402 2 device is used
+2024-11-29 16:28:34,061 - Simulation of the model has started.
+2024-11-29 16:28:34,064 - Test : Grid_Stability
+2024-11-29 16:28:34,064 - test_time : 96
+2024-11-29 16:28:34,065 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:28:36,086 - Capture has started
+2024-11-29 16:28:36,098 - Actual testing has started
+2024-11-29 16:30:12,185 - Loop Ended
+2024-11-29 16:30:13,871 - Test has finished

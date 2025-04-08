@@ -1,0 +1,88 @@
+2024-12-02 11:08:06,838 - logger_a_path: Grid_Stability/Results/Average_day/5MVA/Actual/logger.log
+2024-12-02 11:08:06,838 - Load_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:08:06,838 - PV_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:08:06,839 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-12-02 11:08:06,839 - Initial_battery_SOC: 0
+2024-12-02 11:08:06,839 - Control_Mode: 1
+2024-12-02 11:08:06,839 - Max_SOC: 100
+2024-12-02 11:08:06,839 - Min_SOC: 0
+2024-12-02 11:08:06,840 - capture_rate: 900
+2024-12-02 11:08:06,840 - Folder_name: Grid_Stability/Results/Average_day/5MVA/Actual/
+2024-12-02 11:08:06,840 - Column_Load: Load_average_actual
+2024-12-02 11:08:06,841 - Column_PV: PV_average
+2024-12-02 11:08:06,841 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:08:14,356 - HIL402 2 device is used
+2024-12-02 11:08:53,743 - Simulation of the model has started.
+2024-12-02 11:08:53,750 - Test : Grid_Stability
+2024-12-02 11:08:53,750 - test_time : 96
+2024-12-02 11:08:53,750 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-02 11:08:55,769 - Capture has started
+2024-12-02 11:08:55,791 - Actual testing has started
+2024-12-02 11:10:31,921 - Loop Ended
+2024-12-02 11:10:35,040 - Test has finished
+2024-12-02 11:10:35,042 - logger_b_path: Grid_Stability/Results/5MVA/Optimized/logger.log
+2024-12-02 11:10:35,042 - Load_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:10:35,043 - PV_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:10:35,043 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-12-02 11:10:35,043 - Initial_battery_SOC: 0
+2024-12-02 11:10:35,044 - Control_Mode: 1
+2024-12-02 11:10:35,044 - Max_SOC: 100
+2024-12-02 11:10:35,044 - Min_SOC: 0
+2024-12-02 11:10:35,045 - capture_rate: 900
+2024-12-02 11:10:35,045 - Folder_name: Grid_Stability/Results/5MVA/Optimized/
+2024-12-02 11:10:35,045 - Column_Load: Load_average_optimized
+2024-12-02 11:10:35,046 - Column_PV: PV_average
+2024-12-02 11:10:35,046 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:10:40,001 - HIL402 2 device is used
+2024-12-02 11:11:20,289 - Simulation of the model has started.
+2024-12-02 11:11:20,295 - Test : Grid_Stability
+2024-12-02 11:11:20,295 - test_time : 96
+2024-12-02 11:11:20,296 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-02 11:11:22,329 - Capture has started
+2024-12-02 11:11:22,354 - Actual testing has started
+2024-12-02 11:12:58,378 - Loop Ended
+2024-12-02 11:13:01,384 - Test has finished
+2024-12-02 11:15:02,596 - logger_a_path: Grid_Stability/Results/Average_day/5MVA/Actual/logger.log
+2024-12-02 11:15:02,596 - Load_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:15:02,596 - PV_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:15:02,596 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-12-02 11:15:02,596 - Initial_battery_SOC: 0
+2024-12-02 11:15:02,598 - Control_Mode: 1
+2024-12-02 11:15:02,598 - Max_SOC: 100
+2024-12-02 11:15:02,598 - Min_SOC: 0
+2024-12-02 11:15:02,598 - capture_rate: 900
+2024-12-02 11:15:02,598 - Folder_name: Grid_Stability/Results/Average_day/5MVA/Actual/
+2024-12-02 11:15:02,598 - Column_Load: Load_average_actual
+2024-12-02 11:15:02,599 - Column_PV: PV_average
+2024-12-02 11:15:02,599 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:15:07,338 - HIL402 2 device is used
+2024-12-02 11:15:46,306 - Simulation of the model has started.
+2024-12-02 11:15:46,311 - Test : Grid_Stability
+2024-12-02 11:15:46,311 - test_time : 96
+2024-12-02 11:15:46,311 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-02 11:15:48,333 - Capture has started
+2024-12-02 11:15:48,354 - Actual testing has started
+2024-12-02 11:17:24,445 - Loop Ended
+2024-12-02 11:17:27,842 - Test has finished
+2024-12-02 11:17:27,844 - logger_b_path: Grid_Stability/Results/Average_day/5MVA/Optimized/logger.log
+2024-12-02 11:17:27,844 - Load_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:17:27,844 - PV_path: Grid_Stability/Database/Average_inputs.csv
+2024-12-02 11:17:27,845 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-12-02 11:17:27,845 - Initial_battery_SOC: 0
+2024-12-02 11:17:27,845 - Control_Mode: 1
+2024-12-02 11:17:27,846 - Max_SOC: 100
+2024-12-02 11:17:27,846 - Min_SOC: 0
+2024-12-02 11:17:27,846 - capture_rate: 900
+2024-12-02 11:17:27,848 - Folder_name: Grid_Stability/Results/Average_day/5MVA/Optimized/
+2024-12-02 11:17:27,848 - Column_Load: Load_average_optimized
+2024-12-02 11:17:27,849 - Column_PV: PV_average
+2024-12-02 11:17:27,849 - Loop_step_time: 0.9800208333333332
+2024-12-02 11:17:32,748 - HIL402 2 device is used
+2024-12-02 11:18:08,412 - Simulation of the model has started.
+2024-12-02 11:18:08,416 - Test : Grid_Stability
+2024-12-02 11:18:08,417 - test_time : 96
+2024-12-02 11:18:08,417 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-02 11:18:10,438 - Capture has started
+2024-12-02 11:18:10,462 - Actual testing has started
+2024-12-02 11:19:46,504 - Loop Ended
+2024-12-02 11:19:49,465 - Test has finished

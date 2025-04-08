@@ -1,0 +1,44 @@
+2024-11-29 17:03:12,992 - logger_a_path: Grid_Stability/Results/5MVA/Actual/Winter/logger.log
+2024-11-29 17:03:12,992 - Load_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:03:12,993 - PV_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:03:12,993 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-11-29 17:03:12,993 - Initial_battery_SOC: 0
+2024-11-29 17:03:12,993 - Control_Mode: 1
+2024-11-29 17:03:12,993 - Max_SOC: 100
+2024-11-29 17:03:12,994 - Min_SOC: 0
+2024-11-29 17:03:12,994 - capture_rate: 900
+2024-11-29 17:03:12,994 - Folder_name: Grid_Stability/Results/5MVA/Actual/Winter/
+2024-11-29 17:03:12,994 - Column_Load: Load_Winter_actual
+2024-11-29 17:03:12,996 - Column_PV: PV_Winter
+2024-11-29 17:03:12,996 - Loop_step_time: 0.9800208333333332
+2024-11-29 17:03:18,145 - HIL402 2 device is used
+2024-11-29 17:04:00,295 - Simulation of the model has started.
+2024-11-29 17:04:00,302 - Test : Grid_Stability
+2024-11-29 17:04:00,302 - test_time : 96
+2024-11-29 17:04:00,302 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 17:04:02,321 - Capture has started
+2024-11-29 17:04:02,359 - Actual testing has started
+2024-11-29 17:05:38,397 - Loop Ended
+2024-11-29 17:05:41,688 - Test has finished
+2024-11-29 17:05:41,692 - logger_b_path: Grid_Stability/Results/5MVA/Optimized/Winter/logger.log
+2024-11-29 17:05:41,692 - Load_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:05:41,693 - PV_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:05:41,693 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-11-29 17:05:41,694 - Initial_battery_SOC: 0
+2024-11-29 17:05:41,694 - Control_Mode: 1
+2024-11-29 17:05:41,694 - Max_SOC: 100
+2024-11-29 17:05:41,695 - Min_SOC: 0
+2024-11-29 17:05:41,695 - capture_rate: 900
+2024-11-29 17:05:41,695 - Folder_name: Grid_Stability/Results/5MVA/Optimized/Winter/
+2024-11-29 17:05:41,696 - Column_Load: Load_Winter_optimized
+2024-11-29 17:05:41,696 - Column_PV: PV_Winter
+2024-11-29 17:05:41,697 - Loop_step_time: 0.9800208333333332
+2024-11-29 17:05:49,404 - HIL402 2 device is used
+2024-11-29 17:06:33,885 - Simulation of the model has started.
+2024-11-29 17:06:33,892 - Test : Grid_Stability
+2024-11-29 17:06:33,893 - test_time : 96
+2024-11-29 17:06:33,893 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 17:06:35,913 - Capture has started
+2024-11-29 17:06:35,936 - Actual testing has started
+2024-11-29 17:08:12,004 - Loop Ended
+2024-11-29 17:08:14,969 - Test has finished

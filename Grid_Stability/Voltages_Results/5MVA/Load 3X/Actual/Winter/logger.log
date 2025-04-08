@@ -1,0 +1,64 @@
+2024-11-29 16:10:22,090 - logger_a_path: Grid_Stability/Voltages_Results/5MVA/Actual/Winter/logger.log
+2024-11-29 16:10:22,092 - Load_path: Grid_Stability/Database/5MVA/Winter/Residual_load.csv
+2024-11-29 16:10:22,092 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:10:22,092 - capture_rate: 900
+2024-11-29 16:10:22,092 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Actual/Winter/
+2024-11-29 16:10:22,093 - Column_Load: Residual_Actual
+2024-11-29 16:10:22,093 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:10:24,705 - HIL402 2 device is used
+2024-11-29 16:10:49,237 - Simulation of the model has started.
+2024-11-29 16:10:49,241 - Test : Grid_Stability
+2024-11-29 16:10:49,241 - test_time : 96
+2024-11-29 16:10:49,242 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:10:51,285 - Capture has started
+2024-11-29 16:10:51,305 - Actual testing has started
+2024-11-29 16:12:27,349 - Loop Ended
+2024-11-29 16:12:29,063 - Test has finished
+2024-11-29 16:12:29,066 - logger_b_path: Grid_Stability/Voltages_Results/5MVA/Optimized/Winter/logger.log
+2024-11-29 16:12:29,066 - Load_path: Grid_Stability/Database/5MVA/Winter/Residual_load.csv
+2024-11-29 16:12:29,066 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:12:29,068 - capture_rate: 900
+2024-11-29 16:12:29,068 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Optimized/Winter/
+2024-11-29 16:12:29,068 - Column_Load: Residual_Optimized
+2024-11-29 16:12:29,069 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:12:31,299 - HIL402 2 device is used
+2024-11-29 16:12:56,539 - Simulation of the model has started.
+2024-11-29 16:12:56,542 - Test : Grid_Stability
+2024-11-29 16:12:56,542 - test_time : 96
+2024-11-29 16:12:56,543 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:12:58,562 - Capture has started
+2024-11-29 16:12:58,579 - Actual testing has started
+2024-11-29 16:14:34,601 - Loop Ended
+2024-11-29 16:14:36,311 - Test has finished
+2024-11-29 16:20:55,508 - logger_a_path: Grid_Stability/Voltages_Results/5MVA/Actual/Winter/logger.log
+2024-11-29 16:20:55,508 - Load_path: Grid_Stability/Database/5MVA/Winter/Residual_load.csv
+2024-11-29 16:20:55,508 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:20:55,509 - capture_rate: 900
+2024-11-29 16:20:55,509 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Actual/Winter/
+2024-11-29 16:20:55,509 - Column_Load: Residual_Actual
+2024-11-29 16:20:55,509 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:20:57,724 - HIL402 2 device is used
+2024-11-29 16:21:22,535 - Simulation of the model has started.
+2024-11-29 16:21:22,539 - Test : Grid_Stability
+2024-11-29 16:21:22,539 - test_time : 96
+2024-11-29 16:21:22,540 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:21:24,558 - Capture has started
+2024-11-29 16:21:24,573 - Actual testing has started
+2024-11-29 16:23:00,746 - Loop Ended
+2024-11-29 16:23:02,480 - Test has finished
+2024-11-29 16:23:02,483 - logger_b_path: Grid_Stability/Voltages_Results/5MVA/Optimized/Winter/logger.log
+2024-11-29 16:23:02,484 - Load_path: Grid_Stability/Database/5MVA/Winter/Residual_load.csv
+2024-11-29 16:23:02,484 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:23:02,484 - capture_rate: 900
+2024-11-29 16:23:02,484 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Optimized/Winter/
+2024-11-29 16:23:02,485 - Column_Load: Residual_Optimized
+2024-11-29 16:23:02,485 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:23:04,672 - HIL402 2 device is used
+2024-11-29 16:23:30,048 - Simulation of the model has started.
+2024-11-29 16:23:30,050 - Test : Grid_Stability
+2024-11-29 16:23:30,050 - test_time : 96
+2024-11-29 16:23:30,050 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:23:32,070 - Capture has started
+2024-11-29 16:23:32,084 - Actual testing has started
+2024-11-29 16:25:08,009 - Loop Ended
+2024-11-29 16:25:09,749 - Test has finished

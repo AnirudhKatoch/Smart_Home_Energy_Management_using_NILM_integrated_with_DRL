@@ -1,0 +1,23 @@
+2024-09-25 13:53:02,316 - logger_a_path: NILM_and_DRL_based_EMS/NILM_model/NILM_efficiency/Results/20/logger.log
+2024-09-25 13:53:02,317 - Load_path: NILM_and_DRL_based_EMS/NILM_model/NILM_efficiency/Databases/Total_Power_all_efficiencies_15_min.csv
+2024-09-25 13:53:02,317 - Irradiance_path: NILM_and_DRL_based_EMS/NILM_model/NILM_efficiency/Typhoon_Inputs/Inputs_and_others_15_min_resolution.csv
+2024-09-25 13:53:02,317 - model_path: docs/Typhoon/Faster/faster_Hybrid-inverter_VARTAPulseneo_Digital_twin_Real.tse
+2024-09-25 13:53:02,318 - Initial_battery_SOC: 50
+2024-09-25 13:53:02,318 - Control_Mode: 1
+2024-09-25 13:53:02,318 - Max_SOC: 100
+2024-09-25 13:53:02,318 - Min_SOC: 0
+2024-09-25 13:53:02,319 - capture_rate: 900
+2024-09-25 13:53:02,319 - Folder_name: NILM_and_DRL_based_EMS/NILM_model/NILM_efficiency/Results/20
+2024-09-25 13:53:02,320 - Column_Load: Total_Power_20
+2024-09-25 13:53:02,320 - Column_Irradiance: Irradiance
+2024-09-25 13:53:02,320 - Loop_step_time: 0.9803333333333333
+2024-09-25 13:53:02,320 - NILM_efficiency: 20
+2024-09-25 13:53:12,430 - HIL402 2 device is used
+2024-09-25 13:54:18,802 - Simulation of the model has started.
+2024-09-25 13:54:18,808 - Test : 20
+2024-09-25 13:54:18,808 - test_time : 96
+2024-09-25 13:54:18,808 - It will take approximately 96 seconds for the test NILM_efficiency to finish
+2024-09-25 13:54:20,829 - Capture has started
+2024-09-25 13:54:20,859 - Actual testing has started
+2024-09-25 13:55:56,949 - Loop Ended
+2024-09-25 13:56:02,108 - Test has finished

@@ -1,0 +1,22 @@
+2024-11-29 17:11:10,568 - logger_b_path: Grid_Stability/Results/5MVA/Optimized/Spring/logger.log
+2024-11-29 17:11:10,568 - Load_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:11:10,568 - PV_path: Grid_Stability/Database/Seasonal_variation_inputs.csv
+2024-11-29 17:11:10,569 - model_path: docs/Typhoon/Faster/Digital_twin_grid_stability_PV_constant_Load.tse
+2024-11-29 17:11:10,569 - Initial_battery_SOC: 0
+2024-11-29 17:11:10,569 - Control_Mode: 1
+2024-11-29 17:11:10,570 - Max_SOC: 100
+2024-11-29 17:11:10,570 - Min_SOC: 0
+2024-11-29 17:11:10,570 - capture_rate: 900
+2024-11-29 17:11:10,571 - Folder_name: Grid_Stability/Results/5MVA/Optimized/Spring/
+2024-11-29 17:11:10,572 - Column_Load: Load_Spring_optimized
+2024-11-29 17:11:10,572 - Column_PV: PV_Spring
+2024-11-29 17:11:10,573 - Loop_step_time: 0.9800208333333332
+2024-11-29 17:11:15,345 - HIL402 2 device is used
+2024-11-29 17:11:56,128 - Simulation of the model has started.
+2024-11-29 17:11:56,132 - Test : Grid_Stability
+2024-11-29 17:11:56,132 - test_time : 96
+2024-11-29 17:11:56,132 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 17:11:58,153 - Capture has started
+2024-11-29 17:11:58,179 - Actual testing has started
+2024-11-29 17:13:34,334 - Loop Ended
+2024-11-29 17:13:37,254 - Test has finished

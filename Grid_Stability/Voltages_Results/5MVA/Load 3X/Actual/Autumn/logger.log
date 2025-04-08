@@ -1,0 +1,32 @@
+2024-11-29 16:45:38,442 - logger_a_path: Grid_Stability/Voltages_Results/5MVA/Actual/Autumn/logger.log
+2024-11-29 16:45:38,443 - Load_path: Grid_Stability/Database/5MVA/Autumn/Residual_load.csv
+2024-11-29 16:45:38,443 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:45:38,443 - capture_rate: 900
+2024-11-29 16:45:38,443 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Actual/Autumn/
+2024-11-29 16:45:38,444 - Column_Load: Residual_Actual
+2024-11-29 16:45:38,444 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:45:40,901 - HIL402 2 device is used
+2024-11-29 16:46:11,815 - Simulation of the model has started.
+2024-11-29 16:46:11,827 - Test : Grid_Stability
+2024-11-29 16:46:11,827 - test_time : 96
+2024-11-29 16:46:11,828 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:46:13,848 - Capture has started
+2024-11-29 16:46:13,864 - Actual testing has started
+2024-11-29 16:47:49,889 - Loop Ended
+2024-11-29 16:47:51,660 - Test has finished
+2024-11-29 16:47:51,662 - logger_b_path: Grid_Stability/Voltages_Results/5MVA/Optimized/Autumn/logger.log
+2024-11-29 16:47:51,662 - Load_path: Grid_Stability/Database/5MVA/Autumn/Residual_load.csv
+2024-11-29 16:47:51,662 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 16:47:51,662 - capture_rate: 900
+2024-11-29 16:47:51,662 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Optimized/Autumn/
+2024-11-29 16:47:51,662 - Column_Load: Residual_Optimized
+2024-11-29 16:47:51,662 - Loop_step_time: 0.9800208333333332
+2024-11-29 16:47:54,099 - HIL402 2 device is used
+2024-11-29 16:48:21,874 - Simulation of the model has started.
+2024-11-29 16:48:21,877 - Test : Grid_Stability
+2024-11-29 16:48:21,878 - test_time : 96
+2024-11-29 16:48:21,879 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 16:48:23,898 - Capture has started
+2024-11-29 16:48:23,915 - Actual testing has started
+2024-11-29 16:49:59,897 - Loop Ended
+2024-11-29 16:50:01,623 - Test has finished

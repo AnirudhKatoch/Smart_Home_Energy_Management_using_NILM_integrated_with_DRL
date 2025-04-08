@@ -1,0 +1,16 @@
+2024-11-29 17:39:49,818 - logger_b_path: Grid_Stability/Voltages_Results/5MVA/Optimized/Summer/logger.log
+2024-11-29 17:39:49,818 - Load_path: Grid_Stability/Database/5MVA/Summer/Residual_load.csv
+2024-11-29 17:39:49,819 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-11-29 17:39:49,819 - capture_rate: 900
+2024-11-29 17:39:49,819 - Folder_name: Grid_Stability/Voltages_Results/5MVA/Optimized/Summer/
+2024-11-29 17:39:49,820 - Column_Load: Residual_Optimized
+2024-11-29 17:39:49,820 - Loop_step_time: 0.9800208333333332
+2024-11-29 17:39:52,347 - HIL402 2 device is used
+2024-11-29 17:40:20,319 - Simulation of the model has started.
+2024-11-29 17:40:20,319 - Test : Grid_Stability
+2024-11-29 17:40:20,319 - test_time : 96
+2024-11-29 17:40:20,319 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-11-29 17:40:22,347 - Capture has started
+2024-11-29 17:40:22,364 - Actual testing has started
+2024-11-29 17:41:58,409 - Loop Ended
+2024-11-29 17:42:00,106 - Test has finished

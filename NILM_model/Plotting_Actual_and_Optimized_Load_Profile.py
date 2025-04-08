@@ -13,9 +13,12 @@ df = df.reset_index()
 
 df= df[:1440]
 
+from matplotlib import rcParams
+rcParams['font.family'] = 'Times New Roman'
+
 
 #df = df[:60*24]
-fig1,ax1 = plt.subplots(figsize=(6.4, 4.8))
+fig1,ax1 = plt.subplots(figsize=(6.4, 4.8/1.25))
 
 ax1.plot(df.index/60, df['Refrigerator'],label = 'Refrigerator')
 ax1.plot(df.index/60, df['Boiler'],label = 'Boiler')
@@ -61,7 +64,7 @@ fig1.savefig(FILE_DIR_PATH/f'Figures/Disaggregated household’s total power con
 
 #df = df[:60*24]
 
-fig2,ax2 = plt.subplots(figsize=(6.4, 4.8))
+fig2,ax2 = plt.subplots(figsize=(6.4, 4.8/1.25))
 ax2.plot(df.index / 60, df['Total_Power'], label='Total Power')
 ax2.set_xlim(min(df.index / 60), max(df.index / 60))
 ax2.set_xlabel('Time (h)', fontsize=15)

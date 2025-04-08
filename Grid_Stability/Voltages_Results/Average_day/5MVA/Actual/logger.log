@@ -1,0 +1,32 @@
+2024-12-05 11:09:29,332 - logger_a_path: Grid_Stability/Voltages_Results/Average_day/5MVA/Actual/logger.log
+2024-12-05 11:09:29,332 - Load_path: Grid_Stability/Database/Average_day/5MVA/Residual_load.csv
+2024-12-05 11:09:29,333 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-12-05 11:09:29,333 - capture_rate: 900
+2024-12-05 11:09:29,333 - Folder_name: Grid_Stability/Voltages_Results/Average_day/5MVA/Actual/
+2024-12-05 11:09:29,333 - Column_Load: Residual_Actual
+2024-12-05 11:09:29,334 - Loop_step_time: 0.9800208333333332
+2024-12-05 11:09:51,762 - HIL402 2 device is used
+2024-12-05 11:10:21,407 - Simulation of the model has started.
+2024-12-05 11:10:21,411 - Test : Grid_Stability
+2024-12-05 11:10:21,411 - test_time : 96
+2024-12-05 11:10:21,412 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-05 11:10:23,431 - Capture has started
+2024-12-05 11:10:23,448 - Actual testing has started
+2024-12-05 11:11:59,396 - Loop Ended
+2024-12-05 11:12:01,064 - Test has finished
+2024-12-05 11:12:01,066 - logger_b_path: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/logger.log
+2024-12-05 11:12:01,067 - Load_path: Grid_Stability/Database/Average_day/5MVA/Residual_load.csv
+2024-12-05 11:12:01,067 - model_path: docs/Typhoon/Faster/Residual_load_typhoon.tse
+2024-12-05 11:12:01,067 - capture_rate: 900
+2024-12-05 11:12:01,067 - Folder_name: Grid_Stability/Voltages_Results/Average_day/5MVA/Optimized/
+2024-12-05 11:12:01,068 - Column_Load: Residual_Optimized
+2024-12-05 11:12:01,068 - Loop_step_time: 0.9800208333333332
+2024-12-05 11:12:03,303 - HIL402 2 device is used
+2024-12-05 11:12:30,019 - Simulation of the model has started.
+2024-12-05 11:12:30,022 - Test : Grid_Stability
+2024-12-05 11:12:30,022 - test_time : 96
+2024-12-05 11:12:30,022 - It will take approximately 96 seconds for the test Grid_Stability to finish
+2024-12-05 11:12:32,042 - Capture has started
+2024-12-05 11:12:32,057 - Actual testing has started
+2024-12-05 11:14:08,011 - Loop Ended
+2024-12-05 11:14:09,707 - Test has finished
