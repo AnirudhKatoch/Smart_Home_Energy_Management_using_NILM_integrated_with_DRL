@@ -1,0 +1,24 @@
+Appliance;Power (W);Usage (min);Energy (kWh)
+Boiler;80;250;121.66
+Wash Dryer;500;67;203.79
+Dish Washer;1200;120;876.0
+Solar Pumping;55;200;66.91
+Laptop;32;150;29.2
+Television;100;175;106.45
+PC;65;360;142.35
+Kettle;1900;10;115.58
+Toaster;1000;15;91.25
+Refrigerator;75;30;3.68
+Microwave;400;20;48.66
+Monitor;40;180;43.8
+Audio System;15;95;8.66
+Vacuum Cleaner;1750;45;479.06
+Hair Dryer;350;7;14.9
+Hair Straighteners;60;7;2.55
+Clothes Iron;1100;8;53.33
+Oven;950;60;346.75
+Fan;25;100;15.2
+Washing Machine;450;100;273.75
+EV;2000;60;730.0
+Water Heater;1125;30;205.31
+Washing Machine 2;460;65;181.89
